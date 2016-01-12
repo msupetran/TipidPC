@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace TipidPC.Domain.Models
 {
-    public class Location
+    public class Rating
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public int UserID { get; set; }
+        public int MessageID { get; set; }
+        public bool IsPositive { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
     }

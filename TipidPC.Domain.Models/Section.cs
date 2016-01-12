@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TipidPC.Domain.Models
 {
-    public class Location
+    public class Section
     {
         public int ID { get; set; }
         public string Name { get; set; }

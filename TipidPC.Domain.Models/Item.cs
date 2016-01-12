@@ -8,7 +8,7 @@ namespace TipidPC.Domain.Models
 {
     public enum ItemSection : int
     {
-        ItemForSale = 0,
+        ForSale = 0,
         WantToBuy = 1
     }
 
@@ -31,7 +31,7 @@ namespace TipidPC.Domain.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public int MessageID { get; set; }
         public int CategoryID { get; set; }
         public decimal Amount { get; set; }
         public ItemSection Section { get; set; }
@@ -40,5 +40,6 @@ namespace TipidPC.Domain.Models
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
         public DateTime Expiry { get; set; }
+        public int UserID { get; set; }
     }
 }

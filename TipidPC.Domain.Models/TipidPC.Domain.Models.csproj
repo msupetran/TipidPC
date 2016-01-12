@@ -40,8 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bookmark.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Rating.cs" />
+    <Compile Include="Section.cs" />
+    <Compile Include="Topic.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
