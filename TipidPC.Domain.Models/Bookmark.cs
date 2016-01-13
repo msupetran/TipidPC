@@ -10,9 +10,7 @@ namespace TipidPC.Domain.Models
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int ItemID { get; set; }
-        public int TopicID { get; set; }
+        public int HeaderID { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
     }
 }

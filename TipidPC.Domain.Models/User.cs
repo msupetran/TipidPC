@@ -9,6 +9,7 @@ namespace TipidPC.Domain.Models
     public class User
     {
         public int ID { get; set; }
+        public int LocationID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
@@ -17,7 +18,6 @@ namespace TipidPC.Domain.Models
         public bool IsPremiumMember { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
-        public DateTime LastLoggedIn { get; set; }
-        public int LocationID { get; set; }
+        public DateTime LoggedIn { get; set; }
     }
 }

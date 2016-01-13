@@ -7,7 +7,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Domain
 {
-    public interface ILocationRepository : IRepository<Location>
+    public interface ISectionRepository : IRepository<Section>
     {
     }
 }

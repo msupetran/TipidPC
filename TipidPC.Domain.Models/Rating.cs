@@ -10,7 +10,6 @@ namespace TipidPC.Domain.Models
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int MessageID { get; set; }
         public bool IsPositive { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }

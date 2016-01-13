@@ -30,9 +30,9 @@ namespace TipidPC.Domain.Models
     public class Item
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public int MessageID { get; set; }
+        public int HeaderID { get; set; }
         public int CategoryID { get; set; }
+        public int UserID { get; set; }
         public decimal Amount { get; set; }
         public ItemSection Section { get; set; }
         public ItemCondition Condition { get; set; }
@@ -40,6 +40,5 @@ namespace TipidPC.Domain.Models
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
         public DateTime Expiry { get; set; }
-        public int UserID { get; set; }
     }
 }

@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Domain.Test", "TipidPC.Domain.Test\TipidPC.Domain.Test.csproj", "{6A206692-7026-4F73-8361-400D24A1222E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Infrastructure.Persistence", "TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj", "{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6A206692-7026-4F73-8361-400D24A1222E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A206692-7026-4F73-8361-400D24A1222E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A206692-7026-4F73-8361-400D24A1222E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{B822CD53-C6E3-4B35-8628-A883613B7B28} = {2B137509-FC8D-4A38-A79F-57A360A78883}
 		{95446182-AD07-4E02-BA32-2920B31A541C} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{6A206692-7026-4F73-8361-400D24A1222E} = {2B137509-FC8D-4A38-A79F-57A360A78883}
+		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 	EndGlobalSection
 EndGlobal

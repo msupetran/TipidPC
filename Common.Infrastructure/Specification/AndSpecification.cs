@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Infrastructure.Specifications
+namespace Common.Infrastructure.Specification
 {
-    public class OrSpecification<T> : CompositeSpecfication<T>
+    public class AndSpecification<T> : CompositeSpecfication<T>
         where T : class
     {
         // Constructors
-        public OrSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
+        public AndSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
             : base(spec1, spec2)
         {
         }
@@ -18,7 +18,7 @@ namespace Common.Infrastructure.Specifications
         // Overriden Methods
         public override bool IsSatisfiedBy(T entity)
         {
-            return Spec1.IsSatisfiedBy(entity) || Spec2.IsSatisfiedBy(entity);
+            return Spec1.IsSatisfiedBy(entity) && Spec2.IsSatisfiedBy(entity);
         }
     }
 }

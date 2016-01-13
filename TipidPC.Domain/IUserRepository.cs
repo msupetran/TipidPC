@@ -7,8 +7,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Domain
 {
-    public interface IUserRepository : 
-        IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
     }
 }

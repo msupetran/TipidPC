@@ -6,18 +6,13 @@ using System.Threading.Tasks;
 
 namespace TipidPC.Domain.Models
 {
-    public enum MessageType : int
-    {
-        Negotiation = 0,
-        Forum = 1
-    }
-
-    public class Message
+    public class Entry
     {
         public int ID { get; set; }
-        public string Contents { get; set; }
+        public int HeaderID { get; set; }
+        public int UserID { get; set; }
+        public string Message { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
-        public int UserID { get; set; }
     }
 }

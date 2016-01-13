@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Infrastructure.Specifications
+namespace Common.Infrastructure.Specification
 {
     public abstract class CompositeSpecfication<T>
         : ISpecification<T>

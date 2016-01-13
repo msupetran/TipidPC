@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TipidPC.Domain.Models
 {
-    public class Topic
+    public class Registration
     {
         public int ID { get; set; }
-        public int HeaderID { get; set; }
-        public int SectionID { get; set; }
         public int UserID { get; set; }
+        public bool IsActivated { get; set; }
+        public Guid ValidationID { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public DateTime Activated { get; set; }
     }
 }
