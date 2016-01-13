@@ -17,7 +17,7 @@ namespace TipidPC.Infrastructure.Persistence
         public DbSet<Registration> Registration { get; set; }
 
         // Constructors
-        public DbContextUnitOfWork() : base("DefaultConnection")
+        public DbContextUnitOfWork(string connection) : base(connection)
         {
         }
 

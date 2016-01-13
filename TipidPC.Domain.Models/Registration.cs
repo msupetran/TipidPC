@@ -8,7 +8,7 @@ namespace TipidPC.Domain.Models
 {
     public class Registration
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int UserID { get; set; }
         public bool IsActivated { get; set; }
         public Guid ValidationID { get; set; }

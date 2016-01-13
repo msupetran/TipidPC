@@ -8,7 +8,7 @@ namespace TipidPC.Domain.Models
 {
     public class Header
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public int UserID { get; set; }
         public DateTime Created { get; set; }

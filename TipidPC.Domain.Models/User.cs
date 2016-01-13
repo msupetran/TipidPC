@@ -8,7 +8,7 @@ namespace TipidPC.Domain.Models
 {
     public class User
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int LocationID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

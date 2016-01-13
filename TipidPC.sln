@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Domain.Test", "Tipi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Infrastructure.Persistence", "TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj", "{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

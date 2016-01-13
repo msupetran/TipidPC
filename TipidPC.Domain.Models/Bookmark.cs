@@ -8,7 +8,7 @@ namespace TipidPC.Domain.Models
 {
     public class Bookmark
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int UserID { get; set; }
         public int HeaderID { get; set; }
         public DateTime Created { get; set; }

@@ -29,7 +29,7 @@ namespace TipidPC.Domain.Models
 
     public class Item
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int HeaderID { get; set; }
         public int CategoryID { get; set; }
         public int UserID { get; set; }
