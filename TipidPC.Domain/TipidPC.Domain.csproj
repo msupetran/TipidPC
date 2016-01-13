@@ -48,7 +48,6 @@
     <Compile Include="IBookmarkRepository.cs" />
     <Compile Include="IItemRepository.cs" />
     <Compile Include="ILocationRepository.cs" />
-    <Compile Include="IRepository.cs" />
     <Compile Include="ITopicRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

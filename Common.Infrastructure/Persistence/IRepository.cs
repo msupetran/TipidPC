@@ -1,11 +1,11 @@
-﻿using Common.Infrastructure.Specifications;
+﻿using Common.Infrastructure.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TipidPC.Domain
+namespace Common.Infrastructure.Persistence
 {
     public interface IRepository<TEntity>
         where TEntity : class

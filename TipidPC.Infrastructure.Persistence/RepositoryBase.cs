@@ -1,48 +1,52 @@
-﻿using Common.Infrastructure.Specifications;
+﻿using Common.Infrastructure.Persistence;
+using Common.Infrastructure.Specification;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TipidPC.Domain;
+using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>
+    public abstract class DbContextRepository<TEntity> : 
+        RepositoryBase<TEntity>
         where TEntity : class
     {
         // Fields
-        private IOnlineStoreDBContext _context;
+        private IDbContextUnitOfWork _context;
 
         // Constructors
-        protected RepositoryBase(IOnlineStoreDBContext context)
+        protected DbContextRepository(IDbContextUnitOfWork context)
         {
             _context = context;
         }
 
         // Methods
-        public TEntity Insert(TEntity newEntity)
+        public override TEntity Insert(TEntity newEntity)
         {
             _context.Set<TEntity>().Add(newEntity);
             _context.SaveChanges();
             return newEntity;
         }
-        public TEntity Select(object id)
+        public override TEntity Select(object id)
         {
             return _context.Set<TEntity>().Find(id);
         }
-        public IEnumerable<TEntity> Select()
+        public override IEnumerable<TEntity> Select()
         {
             return _context.Set<TEntity>()
                 .ToList();
         }
-        public IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
+        public override IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
         {
             return _context.Set<TEntity>()
                 .Where(spec.IsSatisfiedBy)
                 .ToList();
         }
-        public void Update(TEntity item)
+        public override void Update(TEntity item)
         {
             if (_context.Entry(item).State == EntityState.Detached)
             {
@@ -50,12 +54,12 @@ namespace TipidPC.Infrastructure.Persistence
             }
             _context.Entry(item).State = EntityState.Modified;
         }
-        public void Delete(object id)
+        public override void Delete(object id)
         {
             TEntity itemToDelete = _context.Set<TEntity>().Find(id);
             this.Delete(itemToDelete);
         }
-        public void Delete(TEntity item)
+        public override void Delete(TEntity item)
         {
             if (_context.Entry(item).State == EntityState.Detached)
             {
@@ -64,5 +68,4 @@ namespace TipidPC.Infrastructure.Persistence
             _context.Set<TEntity>().Remove(item);
         }
     }
-}
 }
