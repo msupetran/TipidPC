@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbContextUnitOfWork.cs" />
-    <Compile Include="IDbContextUnitOfWork.cs" />
+    <Compile Include="TpcDbContext.cs" />
+    <Compile Include="ITpcDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
   </ItemGroup>

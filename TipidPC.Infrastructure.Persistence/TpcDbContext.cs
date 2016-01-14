@@ -10,26 +10,35 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public class DbContextUnitOfWork : DbContext, IUnitOfWork
+    public class TpcDbContext : DbContext, ITpcDbContext
     {
         // Properties
         public DbSet<User> Users { get; set; }
         public DbSet<Registration> Registration { get; set; }
 
         // Constructors
-        public DbContextUnitOfWork(string connection) : base(connection)
-        {
-        }
+        public TpcDbContext() : this("DefaultConnection") { }
+        public TpcDbContext(string connection) : base(connection) { }
 
         // Methods
-        public int Save()
-        {
-            throw new NotImplementedException();
-        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+        public int Save()
+        {
+            return this.SaveChanges();
+        }
+    }
+
+    public class TpcDbContext<TEntity> : DbContext, ITpcDbContext<TEntity>
+        where TEntity : class
+    {
+        // Properties
+        public DbSet<TEntity> Users { get; set; }
+
+        // Constructors
+        public TpcDbContext(string connection) : base(connection) { }
     }
 }

@@ -16,10 +16,10 @@ namespace TipidPC.Infrastructure.Persistence
         where TEntity : class
     {
         // Fields
-        private IDbContextUnitOfWork _context;
+        private ITpcDbContext _context;
 
         // Constructors
-        protected DbContextRepository(IDbContextUnitOfWork context)
+        protected DbContextRepository(ITpcDbContext context)
         {
             _context = context;
         }
@@ -46,13 +46,13 @@ namespace TipidPC.Infrastructure.Persistence
                 .Where(spec.IsSatisfiedBy)
                 .ToList();
         }
-        public override void Update(TEntity item)
+        public override void Update(TEntity entity)
         {
-            if (_context.Entry(item).State == EntityState.Detached)
+            if (_context.Entry(entity).State == EntityState.Detached)
             {
-                _context.Set<TEntity>().Attach(item);
+                _context.Set<TEntity>().Attach(entity);
             }
-            _context.Entry(item).State = EntityState.Modified;
+            _context.Entry(entity).State = EntityState.Modified;
         }
         public override void Delete(object id)
         {

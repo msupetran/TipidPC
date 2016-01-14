@@ -10,7 +10,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public interface IDbContextUnitOfWork : IUnitOfWork
+    public interface ITpcDbContext : IDisposable
     {
         // Propestires
         DbSet<User> Users { get; set; }
@@ -18,8 +18,19 @@ namespace TipidPC.Infrastructure.Persistence
 
         // Methods
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-        int SaveChanges();
-
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        int SaveChanges();
+    }
+
+    public interface ITpcDbContext<T> : IDisposable
+        where T : class
+    {
+        // Propestires
+        DbSet<T> Users { get; set; }
+
+        // Methods
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        int SaveChanges();
     }
 }
