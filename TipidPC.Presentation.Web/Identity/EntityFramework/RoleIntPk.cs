@@ -6,10 +6,10 @@ using System.Web;
 
 namespace TipidPC.Presentation.Web.Identity.EntityFramework
 {
-    public class TpcRole : IdentityRole<int, TpcUserRole>
+    public class RoleIntPk : IdentityRole<int, UserRoleIntPk>
     {
-        public TpcRole() { }
-        public TpcRole(string name)
+        public RoleIntPk() { }
+        public RoleIntPk(string name)
         {
             Name = name;
         }

@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B77EDE7F-8DBB-4177-A054-488C611E045D}</ProjectGuid>
+    <ProjectGuid>{039BF711-FC13-4C22-846B-DCD0ADE46BEC}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -167,23 +167,19 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\TpcIdentityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Identity\EntityFramework\TpcRole.cs" />
-    <Compile Include="Identity\EntityFramework\TpcUserClaim.cs" />
-    <Compile Include="Identity\EntityFramework\TpcUserLogin.cs" />
-    <Compile Include="Identity\EntityFramework\TpcUserRole.cs" />
-    <Compile Include="Identity\TpcUserManager.cs" />
-    <Compile Include="Identity\TpcUserStore.cs" />
+    <Compile Include="Identity\EntityFramework\RoleIntPk.cs" />
+    <Compile Include="Identity\EntityFramework\UserClaimIntPk.cs" />
+    <Compile Include="Identity\EntityFramework\UserLoginIntPk.cs" />
+    <Compile Include="Identity\EntityFramework\UserRoleIntPk.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\TpcIdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -288,7 +284,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>25131</DevelopmentServerPort>
+          <DevelopmentServerPort>40961</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:25131/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

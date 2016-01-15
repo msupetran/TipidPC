@@ -13,10 +13,11 @@ using System.Security.Claims;
 
 namespace TipidPC.Presentation.Web.Identity
 {
-    public class TpcUserStore : 
+    public class TpcUserStore :
         IUserStore<TpcApplicationUser, int>,
         IUserPasswordStore<TpcApplicationUser, int>,
         IUserEmailStore<TpcApplicationUser, int>,
+        IUserClaimStore<TpcApplicationUser, int>,
         IQueryableUserStore<TpcApplicationUser, int>
     {
         // Fields
@@ -217,6 +218,22 @@ namespace TipidPC.Presentation.Web.Identity
             return _context
                 .Set<TpcApplicationUser>()
                 .SingleOrDefaultAsync(t => string.Equals(t.Email, email.Trim()));
+        }
+
+
+        public Task<IList<Claim>> GetClaimsAsync(TpcApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddClaimAsync(TpcApplicationUser user, Claim claim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveClaimAsync(TpcApplicationUser user, Claim claim)
+        {
+            throw new NotImplementedException();
         }
     }
 }

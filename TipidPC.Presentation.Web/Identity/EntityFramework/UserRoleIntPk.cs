@@ -6,5 +6,5 @@ using System.Web;
 
 namespace TipidPC.Presentation.Web.Identity.EntityFramework
 {
-    public class TpcUserRole : IdentityUserRole<int> { }
+    public class UserRoleIntPk : IdentityUserRole<int> { }
 }
