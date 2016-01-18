@@ -11,42 +11,41 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public abstract class DbContextRepository<TEntity> : 
-        RepositoryBase<TEntity>
+    public class GenericRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         // Fields
         private ITipidPcContext _context;
 
         // Constructors
-        protected DbContextRepository(ITipidPcContext context)
+        public GenericRepository(ITipidPcContext context)
         {
             _context = context;
         }
 
         // Methods
-        public override TEntity Insert(TEntity newEntity)
+        public TEntity Insert(TEntity newEntity)
         {
             _context.Set<TEntity>().Add(newEntity);
             _context.SaveChanges();
             return newEntity;
         }
-        public override TEntity Select(object id)
+        public TEntity Select(object id)
         {
             return _context.Set<TEntity>().Find(id);
         }
-        public override IEnumerable<TEntity> Select()
+        public IEnumerable<TEntity> Select()
         {
             return _context.Set<TEntity>()
                 .ToList();
         }
-        public override IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
+        public IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
         {
             return _context.Set<TEntity>()
                 .Where(spec.IsSatisfiedBy)
                 .ToList();
         }
-        public override void Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             if (_context.Entry(entity).State == EntityState.Detached)
             {
@@ -54,12 +53,12 @@ namespace TipidPC.Infrastructure.Persistence
             }
             _context.Entry(entity).State = EntityState.Modified;
         }
-        public override void Delete(object id)
+        public void Delete(object id)
         {
             TEntity itemToDelete = _context.Set<TEntity>().Find(id);
             this.Delete(itemToDelete);
         }
-        public override void Delete(TEntity item)
+        public void Delete(TEntity item)
         {
             if (_context.Entry(item).State == EntityState.Detached)
             {

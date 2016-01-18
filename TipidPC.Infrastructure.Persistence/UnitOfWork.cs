@@ -19,13 +19,25 @@ namespace TipidPC.Infrastructure.Persistence
         // Properties
         public IRepository<Item> ItemRepository
         {
-            get { return _itemRepository; }
-            set { _itemRepository = value; }
+            get
+            {
+                if (_itemRepository == null)
+                {
+                    _itemRepository = new GenericRepository<Item>(_context);
+                }
+                return _itemRepository;
+            }
         }
         public IRepository<Header> HeaderRepository
         {
-            get { return _headerRepository; }
-            set { _headerRepository = value; }
+            get
+            {
+                if (_headerRepository == null)
+                {
+                    _headerRepository = new GenericRepository<Header>(_context);
+                }
+                return _headerRepository;
+            }
         }
 
         // Constructors
