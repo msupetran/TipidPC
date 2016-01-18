@@ -47,10 +47,8 @@
     <Compile Include="Location.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Rating.cs" />
-    <Compile Include="Registration.cs" />
     <Compile Include="Section.cs" />
     <Compile Include="Topic.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

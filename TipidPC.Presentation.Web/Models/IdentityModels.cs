@@ -1,15 +1,16 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using Common.Infrastructure.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using TipidPC.Presentation.Web.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using TipidPC.Infrastructure.Persistence;
 
 namespace TipidPC.Presentation.Web.Models
 {
-    public class TpcUserStore : UserStore<ApplicationUser, RoleIntPk, int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class UserStoreIntPk : UserStore<ApplicationUser, RoleIntPk, int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
     {
-        public TpcUserStore(ApplicationDbContext context)
+        public UserStoreIntPk(ApplicationDbContext context)
             : base(context)
         {
         }
@@ -35,16 +36,20 @@ namespace TipidPC.Presentation.Web.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleIntPk, int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class ApplicationDbContext : TipidPcAspNetDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
+        // Constructors
+        public ApplicationDbContext() : base("DefaultConnection") { }
 
+        // Methods
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>().ToTable("User");
         }
     }
 }

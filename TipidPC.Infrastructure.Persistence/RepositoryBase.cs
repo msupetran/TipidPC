@@ -1,4 +1,4 @@
-﻿using Common.Infrastructure.Persistence;
+﻿    using Common.Infrastructure.Persistence;
 using Common.Infrastructure.Specification;
 using System;
 using System.Collections.Generic;
@@ -16,10 +16,10 @@ namespace TipidPC.Infrastructure.Persistence
         where TEntity : class
     {
         // Fields
-        private ITpcDbContext _context;
+        private ITipidPcContext _context;
 
         // Constructors
-        protected DbContextRepository(ITpcDbContext context)
+        protected DbContextRepository(ITipidPcContext context)
         {
             _context = context;
         }
