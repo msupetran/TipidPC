@@ -27,7 +27,7 @@ namespace TipidPC.Infrastructure.Persistence
         public TEntity Insert(TEntity newEntity)
         {
             _context.Set<TEntity>().Add(newEntity);
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return newEntity;
         }
         public TEntity Select(object id)

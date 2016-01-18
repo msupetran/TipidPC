@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Presentation.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure.AspNet", "Common.Infrastructure.AspNet\Common.Infrastructure.AspNet.csproj", "{4815EFB8-8E6D-400F-BD42-9772B9BE5FED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{4D26A3BD-6993-4033-83B5-151BB675EF6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{4815EFB8-8E6D-400F-BD42-9772B9BE5FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4815EFB8-8E6D-400F-BD42-9772B9BE5FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4815EFB8-8E6D-400F-BD42-9772B9BE5FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D26A3BD-6993-4033-83B5-151BB675EF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D26A3BD-6993-4033-83B5-151BB675EF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D26A3BD-6993-4033-83B5-151BB675EF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D26A3BD-6993-4033-83B5-151BB675EF6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +75,6 @@ Global
 		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{039BF711-FC13-4C22-846B-DCD0ADE46BEC} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
 		{4815EFB8-8E6D-400F-BD42-9772B9BE5FED} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
+		{4D26A3BD-6993-4033-83B5-151BB675EF6F} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
 	EndGlobalSection
 EndGlobal
