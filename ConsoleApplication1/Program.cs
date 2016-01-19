@@ -16,12 +16,13 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine("Inserting new item...");
 
+                var i = 0;
                 var context = new DbContext();
                 var item = new Item()
                 {
-                    HeaderID = 1,
-                    CategoryID = 1,
-                    UserID = 1,
+                    HeaderId = 1,
+                    CategoryId = 1,
+                    UserId = 1,
                     Amount = 275,
                     Section = ItemSection.ForSale,
                     Condition = ItemCondition.BrandNew,
@@ -48,10 +49,18 @@ namespace ConsoleApplication1
                     var topicRepository = uow.GetRepository<Topic>();
                     topicRepository.Insert(topic);
 
-                    uow.Commit();
+                    i = uow.Commit();
                 }
 
-                Console.WriteLine("Item successfully inserted with ID No. {0}", item.Id);
+                if (i > 0)
+                {
+                    Console.WriteLine("Item successfully inserted {0} records.", i);
+                }
+                else
+                {
+                    Console.WriteLine("Insert failed.");
+                }
+                
             }
             catch (Exception ex)
             {

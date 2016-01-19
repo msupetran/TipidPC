@@ -40,6 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -61,6 +62,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Infrastructure\Common.Infrastructure.csproj">
+      <Project>{95446182-ad07-4e02-ba32-2920b31a541c}</Project>
+      <Name>Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TipidPC.Domain.Models\TipidPC.Domain.Models.csproj">
+      <Project>{2a1b4fa7-6e04-441a-b4b5-48605761ac0c}</Project>
+      <Name>TipidPC.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TipidPC.Domain\TipidPC.Domain.csproj">
+      <Project>{b822cd53-c6e3-4b35-8628-a883613b7b28}</Project>
+      <Name>TipidPC.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

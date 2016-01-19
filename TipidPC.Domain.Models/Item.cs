@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,18 +28,29 @@ namespace TipidPC.Domain.Models
         Shop = 2
     }
 
+    public enum ItemDuration : int
+    {
+        FifteenDays = 15,
+        ThirtyDays = 30
+    }
+
     public class Item
     {
         public int Id { get; set; }
-        public int HeaderID { get; set; }
-        public int CategoryID { get; set; }
-        public int UserID { get; set; }
+        public int HeaderId { get; set; }
+        public int CategoryId { get; set; }
+        public int UserId { get; set; }
+        [Required]
         public decimal Amount { get; set; }
+        [Required]
         public ItemSection Section { get; set; }
+        [Required]
         public ItemCondition Condition { get; set; }
+        [Required]
         public ItemWarranty Warranty { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+        [Required]
         public DateTime Expiry { get; set; }
     }
 }
