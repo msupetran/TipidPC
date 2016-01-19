@@ -9,16 +9,11 @@ namespace TipidPC.Domain
     public class ItemManager
     {
         // Fields
-        //private IUnitOfWork _unitOfWork;
         private IRepository<Header> _headerRepository;
         private IRepository<Item> _itemRepository;
         private IRepository<Entry> _entryRepository;
         
         // Constructors
-        //public ItemManager(IUnitOfWork unitOfWork)
-        //{
-        //    _unitOfWork = unitOfWork;
-        //}
         public ItemManager(
             IRepository<Header> headerRespository, 
             IRepository<Item> itemRepository, 
@@ -30,7 +25,7 @@ namespace TipidPC.Domain
         }
 
         // Methods
-        public int Post(
+        public void Post(
             string name,
             string description,
             ItemSection section,
@@ -52,11 +47,19 @@ namespace TipidPC.Domain
                 throw new ValidationException("Description is either blank or has exceeded 500 characters.");
             }
 
-            if (categoryId <= 0 ||
-                amount <= 0 ||
-                userId <= 0)
+            if (categoryId <= 0)
             {
-                return -1;
+                throw new ValidationException("Category is invalid.");
+            }
+
+            if (amount <= 0)
+            {
+                throw new ValidationException("Amount is invalid");
+            }
+
+            if (userId <= 0)
+            {
+                throw new ValidationException("User is invalid.");
             }
 
             // Get date and time stamps...
@@ -71,6 +74,10 @@ namespace TipidPC.Domain
                     Created = timeStamp,
                     Updated = timeStamp
                 });
+            if (header.Id <= 0)
+            {
+                throw new ApplicationException(@"Failure inserting to table ""Header"".");
+            }
 
             // Insert item...
             var item = _itemRepository.Insert(
@@ -100,8 +107,8 @@ namespace TipidPC.Domain
             });
 
             // Commit
-            var inserted = _unitOfWork.Commit();
-            return inserted;
+            //var inserted = _unitOfWork.Commit();
+            //return inserted;
         }
     }
 }

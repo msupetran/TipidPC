@@ -93,7 +93,8 @@ namespace TipidPC.Domain.Test
                 mockEntryRepository.Object);
 
             // Act
-            var result = sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
+            sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
+            var result = mockUnitOfWork.Object.Commit();
 
             // Assert
             Assert.IsTrue(result == 3);
@@ -172,10 +173,13 @@ namespace TipidPC.Domain.Test
                     Updated = timeStamp
                 });
 
-            var sut = new ItemManager(mockUnitOfWork.Object);
+            var sut = new ItemManager(
+                mockHeaderRepository.Object,
+                mockItemRepository.Object,
+                mockEntryRepository.Object);
 
             // Act
-            var result = sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
+            sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
         }
         [TestMethod]
         [ExpectedException(typeof(ValidationException))]
@@ -251,10 +255,13 @@ namespace TipidPC.Domain.Test
                     Updated = timeStamp
                 });
 
-            var sut = new ItemManager(mockUnitOfWork.Object);
-
+            var sut = new ItemManager(
+                mockHeaderRepository.Object,
+                mockItemRepository.Object,
+                mockEntryRepository.Object);
+            
             // Act
-            var result = sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
+            sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
         }
         //[TestMethod]
         //public void PostNoCategoryTest()
