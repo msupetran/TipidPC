@@ -36,7 +36,7 @@ namespace TipidPC.Presentation.Web.Models
         }
     }
 
-    public class ApplicationDbContext : TipidPcAspNetDbContext<ApplicationUser>
+    public class ApplicationDbContext : DbContextIntPk<ApplicationUser>
     {
         // Constructors
         public ApplicationDbContext() : base("DefaultConnection") { }

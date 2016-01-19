@@ -14,41 +14,51 @@ namespace TipidPC.Infrastructure.Persistence
     {
         // Fields
         private bool disposed = false;
-        private ITipidPcContext _context;
-        private IDictionary _repositoryDictionary;
-        
+        private IDbContext _context;
+        private Dictionary<Type, object> _repositoryDictionary;
+
         // Constructors
-        public UnitOfWork(ITipidPcContext context)
+        public UnitOfWork(IDbContext context)
         {
             _context = context;
         }
 
-        // Methods
-        public int Save()
+        // IUnitOfWork Methods
+        public int Commit()
         {
             return _context.SaveChanges();
         }
         public IRepository<TEntity> GetRepository<TEntity>()
             where TEntity : class
         {
-            string entityName = typeof(TEntity).ToString();
-            IRepository<TEntity> repository = null;
+            return this.GetRepository<TEntity, GenericRepository<TEntity>>(_context);
+        }
+        public IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args)
+            where TEntity : class
+            where TRepository : IRepository<TEntity>
+        {
+            Type entityType = typeof(TEntity);
+            Type repositoryType = typeof(TRepository);
 
+            // Check if dictionary has an instance, else instantiate...
             if (_repositoryDictionary == null)
             {
-                _repositoryDictionary = new Dictionary<string, object>();
+                _repositoryDictionary = new Dictionary<Type, object>();
             }
 
-            if (!_repositoryDictionary.Contains(entityName))
-            {
-                repository = new GenericRepository<TEntity>(_context);
-                _repositoryDictionary.Add(entityName, repository);
-
-            }
+            // Check if repository already exists in dictionary, else create one and add it to the dictionary...
+            IRepository<TEntity> repository = null;
+            if (_repositoryDictionary.ContainsKey(entityType))
+                repository = (IRepository<TEntity>)_repositoryDictionary[entityType];
+            else
+                _repositoryDictionary.Add(
+                    entityType,
+                    repository = (TRepository)Activator.CreateInstance(repositoryType, args));
             
-            return repository ?? (IRepository<TEntity>)_repositoryDictionary[entityName];
-
+            return repository;
         }
+
+        // Methods
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)

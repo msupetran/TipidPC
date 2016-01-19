@@ -8,7 +8,11 @@ namespace Common.Infrastructure.Persistence
 {
     public interface IUnitOfWork : IDisposable
     {
-        int Save();
-        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
+        int Commit();
+        IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args) 
+            where TEntity : class
+            where TRepository : IRepository<TEntity>;
+        IRepository<TEntity> GetRepository<TEntity>()
+            where TEntity : class;
     }
 }

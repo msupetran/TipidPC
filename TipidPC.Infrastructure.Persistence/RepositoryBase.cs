@@ -11,14 +11,14 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity>
+    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         // Fields
-        private ITipidPcContext _context;
+        private IDbContext _context;
 
         // Constructors
-        public GenericRepository(ITipidPcContext context)
+        public RepositoryBase(IDbContext context)
         {
             _context = context;
         }
@@ -66,5 +66,11 @@ namespace TipidPC.Infrastructure.Persistence
             }
             _context.Set<TEntity>().Remove(item);
         }
+    }
+
+    public class GenericRepository<TEntity> : RepositoryBase<TEntity>
+        where TEntity : class
+    {
+        public GenericRepository(IDbContext context) : base(context) { }
     }
 }

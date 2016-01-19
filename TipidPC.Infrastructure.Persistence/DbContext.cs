@@ -12,7 +12,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public class TipidPcContext : DbContext, ITipidPcContext
+    public class DbContext : System.Data.Entity.DbContext, IDbContext
     {
         // Properties
         public DbSet<Bookmark> Bookmarks { get; set; }
@@ -26,8 +26,8 @@ namespace TipidPC.Infrastructure.Persistence
         public DbSet<Topic> Topics { get; set; }
 
         // Constructors
-        public TipidPcContext() : this("DefaultConnection") { }
-        public TipidPcContext(string connection) : base(connection) { }
+        public DbContext() : this("DefaultConnection") { }
+        public DbContext(string connection) : base(connection) { }
 
         // Methods
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace TipidPC.Infrastructure.Persistence
         }
     }
 
-    public class TipidPcAspNetDbContext<TUser> : IdentityDbContextIntPk<TUser>, ITipidPcContext
+    public class DbContextIntPk<TUser> : IdentityDbContextIntPk<TUser>, IDbContext
         where TUser : IdentityUser<int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
     {
         // Properties
@@ -52,8 +52,8 @@ namespace TipidPC.Infrastructure.Persistence
         public DbSet<Topic> Topics { get; set; }
 
         // Constructors
-        public TipidPcAspNetDbContext() : this("DefaultConnection") { }
-        public TipidPcAspNetDbContext(string connection) : base(connection) { }
+        public DbContextIntPk() : this("DefaultConnection") { }
+        public DbContextIntPk(string connection) : base(connection) { }
 
         // Methods
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

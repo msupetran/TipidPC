@@ -16,7 +16,7 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine("Inserting new item...");
 
-                var context = new TipidPcContext();
+                var context = new DbContext();
                 var item = new Item()
                 {
                     HeaderID = 1,
@@ -48,8 +48,9 @@ namespace ConsoleApplication1
                     var topicRepository = uow.GetRepository<Topic>();
                     topicRepository.Insert(topic);
 
-                    uow.Save();
+                    uow.Commit();
                 }
+
                 Console.WriteLine("Item successfully inserted with ID No. {0}", item.Id);
             }
             catch (Exception ex)
