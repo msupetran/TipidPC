@@ -9,12 +9,24 @@ namespace TipidPC.Domain
     public class ItemManager
     {
         // Fields
-        private IUnitOfWork _unitOfWork;
+        //private IUnitOfWork _unitOfWork;
+        private IRepository<Header> _headerRepository;
+        private IRepository<Item> _itemRepository;
+        private IRepository<Entry> _entryRepository;
         
         // Constructors
-        public ItemManager(IUnitOfWork unitOfWork)
+        //public ItemManager(IUnitOfWork unitOfWork)
+        //{
+        //    _unitOfWork = unitOfWork;
+        //}
+        public ItemManager(
+            IRepository<Header> headerRespository, 
+            IRepository<Item> itemRepository, 
+            IRepository<Entry> entryRepository)
         {
-            _unitOfWork = unitOfWork;
+            _headerRepository = headerRespository;
+            _itemRepository = itemRepository;
+            _entryRepository = entryRepository;
         }
 
         // Methods
@@ -37,7 +49,7 @@ namespace TipidPC.Domain
 
             if (string.IsNullOrEmpty(description.Trim()) | description.Trim().Length > 500)
             {
-                throw new ValidationException("Description is either blank or has exceeded 500 chracters.");
+                throw new ValidationException("Description is either blank or has exceeded 500 characters.");
             }
 
             if (categoryId <= 0 ||
@@ -51,7 +63,7 @@ namespace TipidPC.Domain
             var timeStamp = DateTime.Now;
 
             // Insert header...
-            var header = _unitOfWork.GetRepository<Header>().Insert(
+            var header = _headerRepository.Insert(
                 new Header()
                 {
                     Title = name,
@@ -61,7 +73,7 @@ namespace TipidPC.Domain
                 });
 
             // Insert item...
-            var item = _unitOfWork.GetRepository<Item>().Insert(
+            var item = _itemRepository.Insert(
                 new Item()
                 {
                     HeaderId = header.Id,
@@ -77,7 +89,7 @@ namespace TipidPC.Domain
                 });
 
             // Insert entry...
-            var entry = _unitOfWork.GetRepository<Entry>().Insert(
+            var entry = _entryRepository.Insert(
                 new Entry()
             {
                 Message = description,

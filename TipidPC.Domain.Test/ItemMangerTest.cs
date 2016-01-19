@@ -87,7 +87,10 @@ namespace TipidPC.Domain.Test
                     Updated = timeStamp
                 });
 
-            var sut = new ItemManager(mockUnitOfWork.Object);
+            var sut = new ItemManager(
+                mockHeaderRepository.Object, 
+                mockItemRepository.Object, 
+                mockEntryRepository.Object);
 
             // Act
             var result = sut.Post(name, description, section, categoryId, amount, condition, warranty, duration, userId);
