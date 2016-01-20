@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201601180731413_AddAllEntities.Designer.cs">
       <DependentUpon>201601180731413_AddAllEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601201034371_AddEntryIdColumn.cs" />
+    <Compile Include="Migrations\201601201034371_AddEntryIdColumn.Designer.cs">
+      <DependentUpon>201601201034371_AddEntryIdColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601180731413_AddAllEntities.resx">
       <DependentUpon>201601180731413_AddAllEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601201034371_AddEntryIdColumn.resx">
+      <DependentUpon>201601201034371_AddEntryIdColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

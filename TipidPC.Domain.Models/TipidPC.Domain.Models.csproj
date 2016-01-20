@@ -45,6 +45,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Header.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Rating.cs" />

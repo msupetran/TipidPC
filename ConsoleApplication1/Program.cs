@@ -17,10 +17,11 @@ namespace ConsoleApplication1
                 Console.WriteLine("Inserting new item...");
 
                 var i = 0;
-                var context = new DbContext();
+                var context = new TpcContext();
                 var item = new Item()
                 {
                     HeaderId = 1,
+                    EntryId = 1,
                     CategoryId = 1,
                     UserId = 1,
                     Amount = 275,
@@ -33,9 +34,9 @@ namespace ConsoleApplication1
                 };
                 var topic = new Topic()
                 {
-                    HeaderID = 1,
-                    SectionID = 1,
-                    UserID = 1,
+                    HeaderId = 1,
+                    SectionId = 1,
+                    UserId = 1,
                     Created = DateTime.Now,
                     Updated = DateTime.Now,
                 };

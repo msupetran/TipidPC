@@ -12,7 +12,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public interface IDbContext : IDisposable
+    public interface ITpcContext : IDisposable
     {
         // Propestires
         DbSet<Bookmark> Bookmarks { get; set; }

@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A206692-7026-4F73-8361-400D24A1222E}</ProjectGuid>
+    <ProjectGuid>{D17CC1F2-534C-4DA8-94E9-D29D3823B8CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TipidPC.Domain.Test</RootNamespace>
-    <AssemblyName>TipidPC.Domain.Test</AssemblyName>
+    <RootNamespace>TipidPc.Application.Test</RootNamespace>
+    <AssemblyName>TipidPc.Application.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,27 +50,22 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ItemManagerTest.cs" />
+    <Compile Include="ItemServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Infrastructure.AspNet\Common.Infrastructure.AspNet.csproj">
-      <Project>{4815efb8-8e6d-400f-bd42-9772b9be5fed}</Project>
-      <Name>Common.Infrastructure.AspNet</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common.Infrastructure\Common.Infrastructure.csproj">
       <Project>{95446182-ad07-4e02-ba32-2920b31a541c}</Project>
       <Name>Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TipidPc.Application\TipidPc.Application.csproj">
+      <Project>{b82308ee-03dc-4651-9714-1fc42b0780f7}</Project>
+      <Name>TipidPc.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\TipidPC.Domain.Models\TipidPC.Domain.Models.csproj">
       <Project>{2a1b4fa7-6e04-441a-b4b5-48605761ac0c}</Project>
@@ -80,6 +75,13 @@
       <Project>{b822cd53-c6e3-4b35-8628-a883613b7b28}</Project>
       <Name>TipidPC.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj">
+      <Project>{2734e4e8-c3b9-4beb-b7f4-88ec71425fef}</Project>
+      <Name>TipidPC.Infrastructure.Persistence</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

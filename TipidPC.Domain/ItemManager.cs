@@ -1,8 +1,7 @@
 ﻿using System;
 using Common.Infrastructure.Persistence;
 using TipidPC.Domain.Models;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using Common.Infrastructure.Specification;
 
 namespace TipidPC.Domain
 {
@@ -10,105 +9,53 @@ namespace TipidPC.Domain
     {
         // Fields
         private IRepository<Header> _headerRepository;
-        private IRepository<Item> _itemRepository;
         private IRepository<Entry> _entryRepository;
-        
+        private IRepository<Item> _itemRepository;
+        private IRepository<IUser> _userRepository;
+        private IRepository<Category> _categoryRepository;
+
         // Constructors
         public ItemManager(
-            IRepository<Header> headerRespository, 
-            IRepository<Item> itemRepository, 
-            IRepository<Entry> entryRepository)
+            IRepository<IUser> userRepository, 
+            IRepository<Category> categoryRepository, 
+            IRepository<Header> headerRepository, 
+            IRepository<Entry> entryRepository, 
+            IRepository<Item> itemRepository)
         {
-            _headerRepository = headerRespository;
-            _itemRepository = itemRepository;
+            _userRepository = userRepository;
+            _categoryRepository = categoryRepository;
+            _headerRepository = headerRepository;
             _entryRepository = entryRepository;
+            _itemRepository = itemRepository;
         }
 
         // Methods
-        public void Post(
-            string name,
-            string description,
-            ItemSection section,
-            int categoryId,
-            int amount,
-            ItemCondition condition,
-            ItemWarranty warranty,
-            ItemDuration duration,
-            int userId)
+        public void InsertItem(Header header, Entry entry, Item item)
         {
-            // Check if parameters are valid...
-            if (string.IsNullOrEmpty(name.Trim()) | name.Trim().Length > 50)
+            // Check if user exists
+            if (_userRepository.Select(item.UserId) == null)
             {
-                throw new ValidationException("Item name is either blank or has exceeded 50 characters.");
+                throw new ApplicationException("User is unkown.");
             }
 
-            if (string.IsNullOrEmpty(description.Trim()) | description.Trim().Length > 500)
+            // Check if category exists
+            if (_categoryRepository.Select(item.CategoryId) != null)
             {
-                throw new ValidationException("Description is either blank or has exceeded 500 characters.");
+                throw new ApplicationException("Could not find the specified category.");
             }
 
-            if (categoryId <= 0)
-            {
-                throw new ValidationException("Category is invalid.");
-            }
+            // Validate other validity of fields here...
+            // to do: add validation code
 
-            if (amount <= 0)
-            {
-                throw new ValidationException("Amount is invalid");
-            }
+            // Insert header
+            _headerRepository.Insert(header);
 
-            if (userId <= 0)
-            {
-                throw new ValidationException("User is invalid.");
-            }
+            // Insert entry
+            _entryRepository.Insert(entry);
 
-            // Get date and time stamps...
-            var timeStamp = DateTime.Now;
-
-            // Insert header...
-            var header = _headerRepository.Insert(
-                new Header()
-                {
-                    Title = name,
-                    UserId = userId,
-                    Created = timeStamp,
-                    Updated = timeStamp
-                });
-            if (header.Id <= 0)
-            {
-                throw new ApplicationException(@"Failure inserting to table ""Header"".");
-            }
-
-            // Insert item...
-            var item = _itemRepository.Insert(
-                new Item()
-                {
-                    HeaderId = header.Id,
-                    CategoryId = categoryId,
-                    UserId = userId,
-                    Amount = amount,
-                    Section = section,
-                    Condition = condition,
-                    Warranty = warranty,
-                    Created = timeStamp,
-                    Updated = timeStamp,
-                    Expiry = timeStamp.AddDays((int)duration)
-                });
-
-            // Insert entry...
-            var entry = _entryRepository.Insert(
-                new Entry()
-            {
-                Message = description,
-                HeaderId = header.Id,
-                UserId = userId,
-                Created = timeStamp,
-                Updated = timeStamp
-            });
-
-            // Commit
-            //var inserted = _unitOfWork.Commit();
-            //return inserted;
+            // Insert item
+            item.HeaderId = header.Id;
+            _itemRepository.Insert(item);
         }
     }
 }

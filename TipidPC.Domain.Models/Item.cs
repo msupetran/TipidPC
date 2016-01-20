@@ -38,6 +38,7 @@ namespace TipidPC.Domain.Models
     {
         public int Id { get; set; }
         public int HeaderId { get; set; }
+        public int EntryId { get; set; }
         public int CategoryId { get; set; }
         public int UserId { get; set; }
         [Required]

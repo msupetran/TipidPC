@@ -15,10 +15,23 @@ namespace TipidPC.Infrastructure.Persistence
         where TEntity : class
     {
         // Fields
-        private IDbContext _context;
+        private ITpcContext _context;
+
+        public ITpcContext Context
+        {
+            get
+            {
+                return _context;
+            }
+
+            set
+            {
+                _context = value;
+            }
+        }
 
         // Constructors
-        public RepositoryBase(IDbContext context)
+        public RepositoryBase(ITpcContext context)
         {
             _context = context;
         }
@@ -71,6 +84,6 @@ namespace TipidPC.Infrastructure.Persistence
     public class GenericRepository<TEntity> : RepositoryBase<TEntity>
         where TEntity : class
     {
-        public GenericRepository(IDbContext context) : base(context) { }
+        public GenericRepository(ITpcContext context) : base(context) { }
     }
 }

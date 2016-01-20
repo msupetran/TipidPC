@@ -14,11 +14,11 @@ namespace TipidPC.Infrastructure.Persistence
     {
         // Fields
         private bool disposed = false;
-        private IDbContext _context;
+        private ITpcContext _context;
         private Dictionary<Type, object> _repositoryDictionary;
 
         // Constructors
-        public UnitOfWork(IDbContext context)
+        public UnitOfWork(ITpcContext context)
         {
             _context = context;
         }
