@@ -17,5 +17,8 @@ namespace TipidPC.Domain.Models
         public int UserId { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+
+        // Navigation properties
+        public ICollection<Entry> Entries { get; set; }
     }
 }

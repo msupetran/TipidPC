@@ -13,5 +13,8 @@ namespace TipidPC.Domain.Models
         public bool IsPositive { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
+
+        // Navigation properties
+        public IUser User { get; set; }
     }
 }
