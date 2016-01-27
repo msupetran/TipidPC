@@ -60,6 +60,7 @@ namespace TipidPC.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<TUser>().ToTable("User");
             modelBuilder.Entity<RoleIntPk>().ToTable("Role");
             modelBuilder.Entity<UserClaimIntPk>().ToTable("UserClaim");
             modelBuilder.Entity<UserLoginIntPk>().ToTable("UserLogin");

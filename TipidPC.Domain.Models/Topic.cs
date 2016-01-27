@@ -17,9 +17,9 @@ namespace TipidPC.Domain.Models
         public DateTime Updated { get; set; }
 
         // Navigation properties
-        public Header Header { get; set; }
-        public Entry Entry { get; set; }
-        public Section Section { get; set; }
-        public IUser User { get; set; }
+        public virtual Header Header { get; set; }
+        public virtual Entry Entry { get; set; }
+        public virtual Section Section { get; set; }
+        public virtual IUser User { get; set; }
     }
 }

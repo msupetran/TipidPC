@@ -19,6 +19,6 @@ namespace TipidPC.Domain.Models
         public DateTime Updated { get; set; }
 
         // Navigation properties
-        public ICollection<Entry> Entries { get; set; }
+        public virtual ICollection<Entry> Entries { get; set; }
     }
 }

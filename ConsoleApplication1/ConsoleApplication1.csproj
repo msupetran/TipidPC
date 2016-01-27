@@ -52,6 +52,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201601270754058_UpdateTables.cs" />
+    <Compile Include="Migrations\201601270754058_UpdateTables.Designer.cs">
+      <DependentUpon>201601270754058_UpdateTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601270855278_AddItemFkToEntryTable.cs" />
+    <Compile Include="Migrations\201601270855278_AddItemFkToEntryTable.Designer.cs">
+      <DependentUpon>201601270855278_AddItemFkToEntryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601270857263_RemoveItemPk.cs" />
+    <Compile Include="Migrations\201601270857263_RemoveItemPk.Designer.cs">
+      <DependentUpon>201601270857263_RemoveItemPk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601270901129_AddEntryFk.cs" />
+    <Compile Include="Migrations\201601270901129_AddEntryFk.Designer.cs">
+      <DependentUpon>201601270901129_AddEntryFk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601271057353_AddEntryFkInTopicTable.cs" />
+    <Compile Include="Migrations\201601271057353_AddEntryFkInTopicTable.Designer.cs">
+      <DependentUpon>201601271057353_AddEntryFkInTopicTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +108,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601270754058_UpdateTables.resx">
+      <DependentUpon>201601270754058_UpdateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601270855278_AddItemFkToEntryTable.resx">
+      <DependentUpon>201601270855278_AddItemFkToEntryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601270857263_RemoveItemPk.resx">
+      <DependentUpon>201601270857263_RemoveItemPk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601270901129_AddEntryFk.resx">
+      <DependentUpon>201601270901129_AddEntryFk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601271057353_AddEntryFkInTopicTable.resx">
+      <DependentUpon>201601271057353_AddEntryFkInTopicTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

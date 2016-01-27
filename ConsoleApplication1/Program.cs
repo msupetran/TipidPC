@@ -10,58 +10,30 @@ namespace ConsoleApplication1
 {
     class Program
     {
+        // Properties
+        public static ITpcContext Context
+        {
+            get { return new ApplicationDbContext(); }
+        }
+        public static DateTime Timestamp
+        {
+            get { return DateTime.Now; }
+        }
+
+        // Main
         static void Main(string[] args)
         {
             try
             {
-                Console.WriteLine("Inserting new item...");
-
-                var i = 0;
-                var context = new TpcContext();
-                var item = new Item()
+                var insertedRecords = InsertItem();
+                if (insertedRecords > 0)
                 {
-                    HeaderId = 1,
-                    EntryId = 1,
-                    CategoryId = 1,
-                    UserId = 1,
-                    Amount = 275,
-                    Section = ItemSection.ForSale,
-                    Condition = ItemCondition.BrandNew,
-                    Warranty = ItemWarranty.Personal,
-                    Created = DateTime.Now,
-                    Updated = DateTime.Now,
-                    Expiry = DateTime.Now.AddDays(30)
-                };
-                var topic = new Topic()
-                {
-                    HeaderId = 1,
-                    SectionId = 1,
-                    UserId = 1,
-                    Created = DateTime.Now,
-                    Updated = DateTime.Now,
-                };
-                
-                using (var uow = new UnitOfWork(context))
-                {
-                    // Insert item...
-                    var itemRepository = uow.GetRepository<Item>();
-                    itemRepository.Insert(item);
-
-                    var topicRepository = uow.GetRepository<Topic>();
-                    topicRepository.Insert(topic);
-
-                    i = uow.Commit();
-                }
-
-                if (i > 0)
-                {
-                    Console.WriteLine("Item successfully inserted {0} records.", i);
+                    Console.WriteLine("Item successfully inserted {0} record(s).", insertedRecords);
                 }
                 else
                 {
                     Console.WriteLine("Insert failed.");
                 }
-                
             }
             catch (Exception ex)
             {
@@ -72,6 +44,73 @@ namespace ConsoleApplication1
                 Console.WriteLine("Press any key to continue...");
                 Console.Read();
             }
+        }
+
+        // Methods
+        static int InsertCategory()
+        {
+            Console.WriteLine("Inserting category...");
+            
+            var category = new Category()
+            {
+                Name = "Hard Disk Drives",
+                Created = Timestamp,
+                Updated = Timestamp
+            };
+
+            using (var uow = new UnitOfWork(Context))
+            {
+                var categoryRepository = uow.GetRepository<Category>();
+                categoryRepository.Insert(category);
+                return uow.Commit();
+            }
+        }
+        static int InsertItem()
+        {
+            Console.WriteLine("Inserting item...");
+            
+            var header = new Header()
+            {
+                Title = string.Empty.PadRight(50, 'H'),
+                UserId = 1,
+                Created = Timestamp,
+                Updated = Timestamp
+            };
+            var entry = new Entry()
+            {
+                Message = string.Empty.PadRight(2000, 'M'),
+                Created = Timestamp,
+                Updated = Timestamp
+            };
+            var item = new Item()
+            {
+                Header = header,
+                Entry = entry,
+                CategoryId = 2,
+                UserId = 1,
+                Amount = 300,
+                Section = ItemSection.ForSale,
+                Condition = ItemCondition.BrandNew,
+                Warranty = ItemWarranty.Personal,
+                Created = Timestamp,
+                Updated = Timestamp,
+                Expiry = Timestamp.AddDays(30)
+            };
+
+            using (var uow = new UnitOfWork(Context))
+            {
+                // Insert item...
+                var itemRepository = uow.GetRepository<Item>();
+                itemRepository.Insert(item);
+                return uow.Commit();
+            }
+        }
+    }
+
+    class ApplicationDbContext : TpcContext
+    {
+        public ApplicationDbContext()
+        {
         }
     }
 }

@@ -95,7 +95,6 @@ namespace TipidPC.Application
                 new Item()
                 {
                     HeaderId = header.Id,
-                    EntryId = entry.Id,
                     CategoryId = categoryId,
                     UserId = userId,
                     Amount = amount,

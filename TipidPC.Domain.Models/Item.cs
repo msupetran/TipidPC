@@ -55,9 +55,9 @@ namespace TipidPC.Domain.Models
         public DateTime Expiry { get; set; }
 
         // Navigation properties
-        public Header Header { get; set; }
-        public Entry Entry { get; set; }
-        public Category Category { get; set; }
-        public IUser User { get; set; }
+        public virtual Header Header { get; set; }
+        public virtual Entry Entry { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual IUser User { get; set; }
     }
 }

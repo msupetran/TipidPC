@@ -1,18 +1,18 @@
-namespace TipidPC.Presentation.Web.Migrations
+namespace ConsoleApplication1.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TipidPC.Presentation.Web.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ConsoleApplication1.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TipidPC.Presentation.Web.Models.ApplicationDbContext context)
+        protected override void Seed(ConsoleApplication1.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

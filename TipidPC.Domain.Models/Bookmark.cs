@@ -14,7 +14,7 @@ namespace TipidPC.Domain.Models
         public DateTime Created { get; set; }
 
         // Navigation properties
-        public Header Header { get; set; }
-        public IUser User { get; set; }
+        public virtual Header Header { get; set; }
+        public virtual IUser User { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace TipidPC.Domain.Models
         public DateTime Updated { get; set; }
 
         // Navigation properties
-        public IUser User { get; set; }
+        public virtual IUser User { get; set; }
     }
 }
