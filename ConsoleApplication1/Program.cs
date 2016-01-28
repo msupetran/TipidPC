@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Infrastructure.Specification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,26 @@ namespace ConsoleApplication1
         {
             try
             {
+                var items = GetItems();
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        Console.WriteLine(item.Id);
+                        //Console.WriteLine("Name: {0}", item.Header.Title);
+                        //Console.WriteLine("Description: {0}", item.Entry.Message);
+                        //Console.WriteLine("Category: {0}", item.Category.Name);
+                        //Console.WriteLine("Section: {0}", item.Section);
+                        //Console.WriteLine("Price: {0}", item.Amount);
+                        Console.WriteLine("======================================");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed to retrieve item.");
+                }
+
+                /*
                 var insertedRecords = InsertItem();
                 if (insertedRecords > 0)
                 {
@@ -34,6 +55,7 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Insert failed.");
                 }
+                */
             }
             catch (Exception ex)
             {
@@ -47,6 +69,23 @@ namespace ConsoleApplication1
         }
 
         // Methods
+        static List<Item> GetItems()
+        {
+            using (var uow = new UnitOfWork(Context))
+            {
+                // Insert item...
+                var itemRepository = uow.GetRepository<Item>();
+                var itemFilter = new ExpressionSpecification<Item>(i => i.Id == 1);
+                return itemRepository
+                    .Select(itemFilter
+                        //t => t.Header,
+                        //t => t.Entry,
+                        //t => t.Category
+                        )
+                    .Where(a => a.Id == 1)
+                    .ToList();
+            }
+        }
         static int InsertCategory()
         {
             Console.WriteLine("Inserting category...");
