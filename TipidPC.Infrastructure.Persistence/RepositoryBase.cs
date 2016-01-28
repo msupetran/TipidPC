@@ -1,4 +1,4 @@
-﻿    using Common.Infrastructure.Persistence;
+﻿using Common.Infrastructure.Persistence;
 using Common.Infrastructure.Specification;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TipidPC.Domain;
 using TipidPC.Domain.Models;
+using System.Linq.Expressions;
 
 namespace TipidPC.Infrastructure.Persistence
 {
@@ -54,8 +55,24 @@ namespace TipidPC.Infrastructure.Persistence
         }
         public IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
         {
-            return _context.Set<TEntity>()
-                .Where(spec.IsMatch)
+            return _context
+                .Set<TEntity>()
+                .Where(spec.IsMatchByExpression)
+                .ToList();
+        }
+        public IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] paths)
+        {
+            var entities = _context
+                .Set<TEntity>()
+                .Include(paths.First());
+
+            for (int i = 1; i < paths.Length; i++)
+            {
+                entities = entities.Include(paths[i]);
+            }
+
+            return entities
+                .Where(spec.IsMatchByExpression)
                 .ToList();
         }
         public void Update(TEntity entity)

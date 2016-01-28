@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +15,8 @@ namespace Common.Infrastructure.Specification
         private Func<T, bool> _expression;
 
         // Constructors
-        public ExpressionSpecification() : this(new Func<T, bool>(t => true)) { }
-        public ExpressionSpecification(Func<T,bool> expression)
+        public ExpressionSpecification() : this(t => true) { }
+        public ExpressionSpecification(Expression<Func<T, bool>> expression)
         {
             if (expression == null)
             {
@@ -23,7 +24,8 @@ namespace Common.Infrastructure.Specification
             }
             else
             {
-                _expression = expression;
+                this.IsMatchByExpression = expression;
+                _expression = expression.Compile();
             }
         }
 

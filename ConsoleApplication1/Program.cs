@@ -31,12 +31,11 @@ namespace ConsoleApplication1
                 {
                     foreach (var item in items)
                     {
-                        Console.WriteLine(item.Id);
-                        //Console.WriteLine("Name: {0}", item.Header.Title);
+                        Console.WriteLine("Name: {0}", item.Header.Title);
                         //Console.WriteLine("Description: {0}", item.Entry.Message);
-                        //Console.WriteLine("Category: {0}", item.Category.Name);
-                        //Console.WriteLine("Section: {0}", item.Section);
-                        //Console.WriteLine("Price: {0}", item.Amount);
+                        Console.WriteLine("Category: {0}", item.Category.Name);
+                        Console.WriteLine("Section: {0}", item.Section);
+                        Console.WriteLine("Price: {0}", item.Amount);
                         Console.WriteLine("======================================");
                     }
                 }
@@ -75,14 +74,14 @@ namespace ConsoleApplication1
             {
                 // Insert item...
                 var itemRepository = uow.GetRepository<Item>();
-                var itemFilter = new ExpressionSpecification<Item>(i => i.Id == 1);
+                var itemFilter1 = new ExpressionSpecification<Item>(i => i.Amount == 300);
+                var itemFilter2 = itemFilter1.And(a => a.Header.Title.Contains("X"));
                 return itemRepository
-                    .Select(itemFilter
-                        //t => t.Header,
-                        //t => t.Entry,
-                        //t => t.Category
+                    .Select(itemFilter2,
+                        t => t.Header,
+                        t => t.Entry,
+                        t => t.Category
                         )
-                    .Where(a => a.Id == 1)
                     .ToList();
             }
         }

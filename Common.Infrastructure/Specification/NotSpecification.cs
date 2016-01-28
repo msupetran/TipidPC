@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Common.Infrastructure.Specification
         // Overriden Methods
         public override bool IsMatch(T o)
         {
-            return !Spec.IsMatch(o);
+            return !Spec.IsMatchByExpression.Compile()(o);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace Common.Infrastructure.Specification
         // Overriden Methods
         public override bool IsMatch(T entity)
         {
-            return Spec1.IsMatch(entity) || Spec2.IsMatch(entity);
+            return Spec1.IsMatchByExpression.Compile()(entity) || Spec2.IsMatchByExpression.Compile()(entity);
         }
     }
 }
