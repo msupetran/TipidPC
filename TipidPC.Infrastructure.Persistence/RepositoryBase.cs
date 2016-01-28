@@ -57,7 +57,7 @@ namespace TipidPC.Infrastructure.Persistence
         {
             return _context
                 .Set<TEntity>()
-                .Where(spec.IsMatchByExpression)
+                .Where(spec.Expression)
                 .ToList();
         }
         public IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] paths)
@@ -72,7 +72,7 @@ namespace TipidPC.Infrastructure.Persistence
             }
 
             return entities
-                .Where(spec.IsMatchByExpression)
+                .Where(spec.Expression)
                 .ToList();
         }
         public void Update(TEntity entity)

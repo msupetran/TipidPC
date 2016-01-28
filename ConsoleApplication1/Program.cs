@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TipidPC.Domain.Models;
@@ -74,10 +75,10 @@ namespace ConsoleApplication1
             {
                 // Insert item...
                 var itemRepository = uow.GetRepository<Item>();
-                var itemFilter1 = new ExpressionSpecification<Item>(i => i.Amount == 300);
-                var itemFilter2 = itemFilter1.And(a => a.Header.Title.Contains("X"));
+                var itemFilter = new ExpressionSpecification<Item>(i => i.Amount == 300)
+                    .And(a => a.Header.Title.Contains("X"));
                 return itemRepository
-                    .Select(itemFilter2,
+                    .Select(itemFilter,
                         t => t.Header,
                         t => t.Entry,
                         t => t.Category

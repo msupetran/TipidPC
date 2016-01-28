@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linq\Expressions\ExpressionExtensions.cs" />
+    <Compile Include="Linq\Expressions\ParameterRebinder.cs" />
     <Compile Include="Persistence\IRepository.cs" />
     <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,7 +51,7 @@
     <Compile Include="Specification\ISpecification.cs" />
     <Compile Include="Specification\NotSpecification.cs" />
     <Compile Include="Specification\OrSpecification.cs" />
-    <Compile Include="Specification\SpecificationExtensionMethods.cs" />
+    <Compile Include="Specification\SpecificationExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

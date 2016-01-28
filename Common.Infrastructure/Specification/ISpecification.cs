@@ -10,7 +10,7 @@ namespace Common.Infrastructure.Specification
     public interface ISpecification<T>
         where T : class
     {
-        Expression<Func<T, bool>> IsMatchByExpression { get; }
-        bool IsMatch(T entity);
+        Expression<Func<T, bool>> Expression { get; }
+        //bool IsMatch(T entity);
     }
 }

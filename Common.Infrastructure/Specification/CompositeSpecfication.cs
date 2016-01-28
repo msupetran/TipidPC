@@ -14,7 +14,7 @@ namespace Common.Infrastructure.Specification
         // Fields
         private ISpecification<T> _spec1;
         private ISpecification<T> _spec2;
-        private Expression<Func<T, bool>> _isMatchedByExpression;
+        private Expression<Func<T, bool>> _expression;
 
         // Properties
         protected ISpecification<T> Spec1
@@ -25,10 +25,10 @@ namespace Common.Infrastructure.Specification
         {
             get { return _spec2; }
         }
-        public Expression<Func<T, bool>> IsMatchByExpression
+        public Expression<Func<T, bool>> Expression
         {
-            get { return _isMatchedByExpression; }
-            protected set { _isMatchedByExpression = value; }
+            get { return _expression; }
+            protected set { _expression = value; }
         }
 
         // Constructors
@@ -42,6 +42,6 @@ namespace Common.Infrastructure.Specification
         }
 
         // Methods
-        public abstract bool IsMatch(T entity);
+        //public abstract bool IsMatch(T entity);
     }
 }

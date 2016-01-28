@@ -12,7 +12,7 @@ namespace Common.Infrastructure.Specification
         where T : class
     {
         // Fields
-        private Func<T, bool> _expression;
+        //private Func<T, bool> _expression;
 
         // Constructors
         public ExpressionSpecification() : this(t => true) { }
@@ -24,15 +24,15 @@ namespace Common.Infrastructure.Specification
             }
             else
             {
-                this.IsMatchByExpression = expression;
-                _expression = expression.Compile();
+                this.Expression = expression;
+                //_expression = expression.Compile();
             }
         }
 
         // Methods
-        public override bool IsMatch(T o)
-        {
-            return _expression(o);
-        }
+        //public override bool IsMatch(T o)
+        //{
+        //    return _expression(o);
+        //}
     }
 }
