@@ -55,7 +55,7 @@ namespace TipidPC.Infrastructure.Persistence
         public IEnumerable<TEntity> Select(ISpecification<TEntity> spec)
         {
             return _context.Set<TEntity>()
-                .Where(spec.IsSatisfiedBy)
+                .Where(spec.IsMatch)
                 .ToList();
         }
         public void Update(TEntity entity)

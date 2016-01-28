@@ -28,7 +28,7 @@ namespace Common.Infrastructure.Specification
         }
 
         // Methods
-        public override bool IsSatisfiedBy(T o)
+        public override bool IsMatch(T o)
         {
             return _expression(o);
         }

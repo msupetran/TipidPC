@@ -16,9 +16,9 @@ namespace Common.Infrastructure.Specification
         }
 
         // Overriden Methods
-        public override bool IsSatisfiedBy(T entity)
+        public override bool IsMatch(T entity)
         {
-            return Spec1.IsSatisfiedBy(entity) && Spec2.IsSatisfiedBy(entity);
+            return Spec1.IsMatch(entity) && Spec2.IsMatch(entity);
         }
     }
 }

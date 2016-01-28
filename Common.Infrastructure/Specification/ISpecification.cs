@@ -9,6 +9,6 @@ namespace Common.Infrastructure.Specification
     public interface ISpecification<T>
         where T : class
     {
-        bool IsSatisfiedBy(T entity);
+        bool IsMatch(T entity);
     }
 }

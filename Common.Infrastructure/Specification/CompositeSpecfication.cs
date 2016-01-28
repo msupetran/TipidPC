@@ -35,6 +35,6 @@ namespace Common.Infrastructure.Specification
         }
 
         // Methods
-        public abstract bool IsSatisfiedBy(T entity);
+        public abstract bool IsMatch(T entity);
     }
 }

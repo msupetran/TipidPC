@@ -28,9 +28,9 @@ namespace Common.Infrastructure.Specification
         }
 
         // Overriden Methods
-        public override bool IsSatisfiedBy(T o)
+        public override bool IsMatch(T o)
         {
-            return !Spec.IsSatisfiedBy(o);
+            return !Spec.IsMatch(o);
         }
     }
 }
