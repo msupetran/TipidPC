@@ -44,7 +44,7 @@ namespace TipidPC.Domain
                 throw new ApplicationException("Could not find the specified category.");
             }
 
-            // Validate other validity of fields here...
+            // Validate other fields here...
             // to do: add validation code
 
             // Insert header

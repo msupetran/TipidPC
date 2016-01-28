@@ -13,7 +13,7 @@ namespace TipidPC.Infrastructure.Persistence
     public class UnitOfWork : IUnitOfWork
     {
         // Fields
-        private bool disposed = false;
+        private bool _disposed = false;
         private ITpcContext _context;
         private Dictionary<Type, object> _repositoryDictionary;
 
@@ -61,17 +61,23 @@ namespace TipidPC.Infrastructure.Persistence
         // Methods
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (_disposed)
+                return;
+
+            if (disposing)
             {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
+                // Release all disposable objects here...
+                _context.Dispose();
             }
-            this.disposed = true;
+
+            // Release non-disposable objects here by setting the reference to null...
+            _repositoryDictionary = null;
+
+            _disposed = true;
         }
         public void Dispose()
         {
+            
             Dispose(true);
             GC.SuppressFinalize(this);
         }
