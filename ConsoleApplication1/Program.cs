@@ -39,6 +39,7 @@ namespace ConsoleApplication1
         {
             try
             {
+                /*
                 var items = GetItems();
                 if (items != null)
                 {
@@ -56,8 +57,8 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Failed to retrieve item.");
                 }
-
-                /*
+                */
+                
                 var insertedRecords = InsertItem();
                 if (insertedRecords > 0)
                 {
@@ -67,11 +68,11 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Insert failed.");
                 }
-                */
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException.Message);
+                Console.WriteLine(ex.GetType().ToString());
             }
             finally
             {
@@ -141,7 +142,7 @@ namespace ConsoleApplication1
             {
                 Header = header,
                 Entry = entry,
-                CategoryId = 2,
+                //CategoryId = 2,
                 UserId = 1,
                 Amount = 300,
                 Section = ItemSection.ForSale,
