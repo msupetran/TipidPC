@@ -13,9 +13,9 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public interface ITpcContext : IContext
+    public interface ITpcContext : IDbContext
     {
-        // Propestires
+        // Properties
         DbSet<Bookmark> Bookmarks { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<Entry> Entries { get; set; }
@@ -25,23 +25,5 @@ namespace TipidPC.Infrastructure.Persistence
         DbSet<Rating> Ratings { get; set; }
         DbSet<Section> Sections { get; set; }
         DbSet<Topic> Topics { get; set; }
-
-        // EF-dependent members
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
-
-    //public interface ITipidPcContext<T> : IDisposable
-    //    where T : class
-    //{
-    //    // Propestires
-    //    DbSet<Item> Items { get; set; }
-    //    DbSet<Header> Headers { get; set; }
-    //    DbSet<Entry> Entries { get; set; }
-
-    //    // Methods
-    //    DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-    //    DbSet<TEntity> Set<TEntity>() where TEntity : class;
-    //    int SaveChanges();
-    //}
 }

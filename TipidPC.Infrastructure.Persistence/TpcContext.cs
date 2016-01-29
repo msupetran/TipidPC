@@ -67,16 +67,4 @@ namespace TipidPC.Infrastructure.Persistence
             modelBuilder.Entity<UserRoleIntPk>().ToTable("UserRole");
         }
     }
-
-    //public class TipidPcContext<TEntity> : DbContext, ITipidPcContext<TEntity>
-    //    where TEntity : class
-    //{
-    //    // Properties
-    //    public DbSet<Item> Items { get; set; }
-    //    public DbSet<Header> Headers { get; set; }
-    //    public DbSet<Entry> Entries { get; set; }
-
-    //    // Constructors
-    //    public TipidPcContext(string connection) : base(connection) { }
-    //}
 }

@@ -67,6 +67,10 @@
       <Project>{4815efb8-8e6d-400f-bd42-9772b9be5fed}</Project>
       <Name>Common.Infrastructure.AspNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.Infrastructure.EntityFramework\Common.Infrastructure.EntityFramework.csproj">
+      <Project>{2460c181-fcbd-41c5-88ae-f71b92cd7990}</Project>
+      <Name>Common.Infrastructure.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.Infrastructure\Common.Infrastructure.csproj">
       <Project>{95446182-ad07-4e02-ba32-2920b31a541c}</Project>
       <Name>Common.Infrastructure</Name>
