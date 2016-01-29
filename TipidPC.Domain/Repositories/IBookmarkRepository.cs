@@ -1,4 +1,4 @@
-﻿using Common.Infrastructure.Persistence;
+﻿using Common.Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

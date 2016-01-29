@@ -1,5 +1,5 @@
 ﻿using System;
-using Common.Infrastructure.Persistence;
+using Common.Infrastructure.Domain;
 using TipidPC.Domain.Models;
 using Common.Infrastructure.Specification;
 

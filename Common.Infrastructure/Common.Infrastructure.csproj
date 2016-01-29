@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IContext.cs" />
+    <Compile Include="Domain\RepositoryBase.cs" />
+    <Compile Include="Data\UnitOfWorkBase.cs" />
+    <Compile Include="Domain\PropertyNavigator.cs" />
+    <Compile Include="Domain\PropertyNavigatorExtensions.cs" />
     <Compile Include="Linq\Expressions\ExpressionExtensions.cs" />
     <Compile Include="Linq\Expressions\ParameterRebinder.cs" />
-    <Compile Include="Persistence\IRepository.cs" />
-    <Compile Include="Persistence\IUnitOfWork.cs" />
+    <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specification\AndSpecification.cs" />
     <Compile Include="Specification\CompositeSpecfication.cs" />

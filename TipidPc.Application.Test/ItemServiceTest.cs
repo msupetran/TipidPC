@@ -1,4 +1,5 @@
-﻿using Common.Infrastructure.Persistence;
+﻿using Common.Infrastructure.Data;
+using Common.Infrastructure.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

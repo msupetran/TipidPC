@@ -1,5 +1,5 @@
 ﻿using Common.Infrastructure.AspNet.Identity.EntityFramework;
-using Common.Infrastructure.Persistence;
+using Common.Infrastructure.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;

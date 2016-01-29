@@ -1,5 +1,6 @@
 ﻿using System;
-using Common.Infrastructure.Persistence;
+using Common.Infrastructure.Domain;
+using Common.Infrastructure.Data;
 using TipidPC.Domain.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

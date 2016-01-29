@@ -1,39 +1,39 @@
-﻿using Common.Infrastructure.Persistence;
+﻿using Common.Infrastructure.Domain;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TipidPC.Domain.Models;
 using Common.Infrastructure.Specification;
+using Common.Infrastructure.Data;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWorkBase : IUnitOfWork
     {
         // Fields
         private bool _disposed = false;
-        private ITpcContext _context;
+        private IContext _context;
         private Dictionary<Type, object> _repositoryDictionary;
 
         // Constructors
-        public UnitOfWork(ITpcContext context)
+        public UnitOfWorkBase(IContext context)
         {
             _context = context;
         }
 
         // IUnitOfWork Methods
-        public int Commit()
+        public virtual int Commit()
         {
             return _context.SaveChanges();
         }
-        public IRepository<TEntity> GetRepository<TEntity>()
+        public virtual IRepository<TEntity> GetRepository<TEntity>()
             where TEntity : class
         {
-            return this.GetRepository<TEntity, GenericRepository<TEntity>>(_context);
+            return this.GetRepository<TEntity, RepositoryBase<TEntity>>(_context);
         }
-        public IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args)
+        public virtual IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args)
             where TEntity : class
             where TRepository : IRepository<TEntity>
         {

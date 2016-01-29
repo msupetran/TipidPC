@@ -13,7 +13,7 @@ namespace Common.Infrastructure.Specification
     {
         // Constructors
         public AndSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
-            : base(spec1, spec2)
+            //: base(spec1, spec2)
         {
             this.Expression = spec1.Expression.And(spec2.Expression);
         }

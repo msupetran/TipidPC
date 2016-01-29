@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Infrastructure.Persistence
+namespace Common.Infrastructure.Domain
 {
     public interface IRepository<TEntity>
         where TEntity : class

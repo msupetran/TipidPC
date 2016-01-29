@@ -1,4 +1,6 @@
-﻿using Common.Infrastructure.Specification;
+﻿using Common.Infrastructure.Data;
+using Common.Infrastructure.Domain;
+using Common.Infrastructure.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,20 @@ namespace ConsoleApplication1
 {
     class Program
     {
+        // Fields
+        private static ITpcContext _context;
+
         // Properties
         public static ITpcContext Context
         {
-            get { return new ApplicationDbContext(); }
+            get
+            {
+                if (_context == null)
+                {
+                    _context = new ApplicationDbContext();
+                }
+                return _context;
+            }
         }
         public static DateTime Timestamp
         {
@@ -71,18 +83,22 @@ namespace ConsoleApplication1
         // Methods
         static List<Item> GetItems()
         {
-            using (var uow = new UnitOfWork(Context))
+            using (var uow = new TpcUnitOfWork(Context))
             {
                 // Insert item...
-                var itemRepository = uow.GetRepository<Item>();
-                var itemFilter = new ExpressionSpecification<Item>(i => i.Amount == 300)
-                    .And(a => a.Header.Title.Contains("X"));
+                var itemRepository = uow.GetRepository<Item, TpcRepositoryBase<Item>>(Context);
+
+                var spec = new ExpressionSpecification<Item>()
+                    .Not(i => (i.Header.Title.Contains("H")))
+                    .Or(i => i.Amount >= 300);
+
+                var include = new PropertyNavigator<Item>()
+                    .Include(i => i.Header)
+                    .Include(i => i.Entry)
+                    .Include(i => i.Category);
+
                 return itemRepository
-                    .Select(itemFilter,
-                        t => t.Header,
-                        t => t.Entry,
-                        t => t.Category
-                        )
+                    .Select(spec, include.Properties)
                     .ToList();
             }
         }
@@ -97,7 +113,7 @@ namespace ConsoleApplication1
                 Updated = Timestamp
             };
 
-            using (var uow = new UnitOfWork(Context))
+            using (var uow = new TpcUnitOfWork(Context))
             {
                 var categoryRepository = uow.GetRepository<Category>();
                 categoryRepository.Insert(category);
@@ -136,7 +152,7 @@ namespace ConsoleApplication1
                 Expiry = Timestamp.AddDays(30)
             };
 
-            using (var uow = new UnitOfWork(Context))
+            using (var uow = new TpcUnitOfWork(Context))
             {
                 // Insert item...
                 var itemRepository = uow.GetRepository<Item>();

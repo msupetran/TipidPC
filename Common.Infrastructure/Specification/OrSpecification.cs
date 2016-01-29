@@ -13,9 +13,9 @@ namespace Common.Infrastructure.Specification
     {
         // Constructors
         public OrSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
-            : base(spec1, spec2)
+            //: base(spec1, spec2)
         {
-            this.Expression = spec1.Expression.Or(spec2.Expression);
+            this.Expression = spec1.Expression.Or<T>(spec2.Expression);
         }
 
         // Overriden Methods

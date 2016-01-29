@@ -29,4 +29,12 @@ namespace Common.Infrastructure.Linq.Expressions
             return base.VisitParameter(p);
         }
     }
+
+    //public class ExpressionParameterVisitor : ExpressionVisitor
+    //{
+    //    public static Expression ReplaceParameters(Dictionary<ParameterExpression, ParameterExpression> map, Expression exp)
+    //    {
+    //        return new ExpressionParameterVisitor(map).Visit(exp);
+    //    }
+    //}
 }

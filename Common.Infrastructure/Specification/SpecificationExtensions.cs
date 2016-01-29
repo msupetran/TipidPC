@@ -28,8 +28,7 @@ namespace Common.Infrastructure.Specification
         public static ISpecification<T> And<T>(this ISpecification<T> spec, Expression<Func<T, bool>> expression)
             where T : class
         {
-            var spec2 = new ExpressionSpecification<T>(expression);
-            return spec.And<T>(spec2);
+            return spec.And<T>(new ExpressionSpecification<T>(expression));
         }
         public static ISpecification<T> Or<T>(this ISpecification<T> spec, Expression<Func<T, bool>> expression)
             where T : class
@@ -39,7 +38,7 @@ namespace Common.Infrastructure.Specification
         public static ISpecification<T> Not<T>(this ISpecification<T> spec, Expression<Func<T, bool>> expression)
             where T : class
         {
-            return spec.Not(new ExpressionSpecification<T>(expression));
+            return spec.Not<T>(new ExpressionSpecification<T>(expression));
         }
     }
 }

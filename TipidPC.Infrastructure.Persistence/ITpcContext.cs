@@ -1,5 +1,6 @@
 ﻿using Common.Infrastructure.AspNet.Identity.EntityFramework;
-using Common.Infrastructure.Persistence;
+using Common.Infrastructure.Data;
+using Common.Infrastructure.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using TipidPC.Domain.Models;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public interface ITpcContext : IDisposable
+    public interface ITpcContext : IContext
     {
         // Propestires
         DbSet<Bookmark> Bookmarks { get; set; }
@@ -25,10 +26,9 @@ namespace TipidPC.Infrastructure.Persistence
         DbSet<Section> Sections { get; set; }
         DbSet<Topic> Topics { get; set; }
 
-        // Methods
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+        // EF-dependent members
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
-        int SaveChanges();
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
 
     //public interface ITipidPcContext<T> : IDisposable

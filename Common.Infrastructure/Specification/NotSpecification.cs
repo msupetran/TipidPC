@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Infrastructure.Linq.Expressions;
+using System.Linq.Expressions;
 
 namespace Common.Infrastructure.Specification
 {
@@ -10,22 +11,22 @@ namespace Common.Infrastructure.Specification
         where T : class
     {
         // Fields
-        private ISpecification<T> _spec;
+        //private ISpecification<T> _spec;
 
-        // Properties
-        public ISpecification<T> Spec
-        {
-            get
-            {
-                return _spec;
-            }
-        }
+        //// Properties
+        //public ISpecification<T> Spec
+        //{
+        //    get
+        //    {
+        //        return _spec;
+        //    }
+        //}
 
         // Constructors
         public NotSpecification(ISpecification<T> spec1, ISpecification<T> spec2)
-            : base(spec1, spec2)
+            //: base(spec1, spec2)
         {
-            this.Expression = spec1.Expression.Or<T>(spec2.Expression);
+            this.Expression = spec1.Expression.Not<T>(spec2.Expression);
         }
 
         // Overriden Methods

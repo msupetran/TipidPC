@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Common.Infrastructure.Persistence;
 using TipidPC.Domain.Models;
 using Common.Infrastructure.AspNet.Identity.EntityFramework;
+using Common.Infrastructure.Data;
+using Common.Infrastructure.Domain;
 
 namespace TipidPC.Domain.Test
 {
