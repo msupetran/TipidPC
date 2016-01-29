@@ -86,7 +86,7 @@ namespace ConsoleApplication1
             using (var uow = new TpcUnitOfWork(Context))
             {
                 // Insert item...
-                var itemRepository = uow.GetRepository<Item, TpcRepositoryBase<Item>>(Context);
+                var itemRepository = uow.GetRepository<Item>();
 
                 var spec = new ExpressionSpecification<Item>()
                     .Not(i => (i.Header.Title.Contains("H")))

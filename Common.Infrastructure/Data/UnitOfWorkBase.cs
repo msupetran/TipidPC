@@ -10,15 +10,19 @@ using Common.Infrastructure.Data;
 
 namespace TipidPC.Infrastructure.Persistence
 {
-    public class UnitOfWorkBase : IUnitOfWork
+    public abstract class UnitOfWorkBase<TContext> : IUnitOfWork
+        where TContext : IContext
     {
         // Fields
         private bool _disposed = false;
-        private IContext _context;
+        private TContext _context;
         private Dictionary<Type, object> _repositoryDictionary;
 
+        // Properties
+        protected TContext Context { get { return _context; } }
+
         // Constructors
-        public UnitOfWorkBase(IContext context)
+        public UnitOfWorkBase(TContext context)
         {
             _context = context;
         }
@@ -28,11 +32,11 @@ namespace TipidPC.Infrastructure.Persistence
         {
             return _context.SaveChanges();
         }
-        public virtual IRepository<TEntity> GetRepository<TEntity>()
-            where TEntity : class
-        {
-            return this.GetRepository<TEntity, RepositoryBase<TEntity>>(_context);
-        }
+        public abstract IRepository<TEntity> GetRepository<TEntity>()
+            where TEntity : class;
+        //{
+        //    return this.GetRepository<TEntity, RepositoryBase<TEntity>>(_context);
+        //}
         public virtual IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args)
             where TEntity : class
             where TRepository : IRepository<TEntity>

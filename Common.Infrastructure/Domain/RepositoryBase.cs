@@ -10,20 +10,21 @@ using Common.Infrastructure.Data;
 
 namespace Common.Infrastructure.Domain
 {
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity>
+    public abstract class RepositoryBase<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class
+        where TContext : IContext
     {
         // Fields
-        private IContext _context;
+        private TContext _context;
 
         // Properties
-        protected IContext Context
+        protected TContext Context
         {
             get { return _context; }
         }
 
         // Constructors
-        protected RepositoryBase(IContext context)
+        protected RepositoryBase(TContext context)
         {
             _context = context;
         }
@@ -38,10 +39,4 @@ namespace Common.Infrastructure.Domain
         public abstract void Delete(object id);
         public abstract void Delete(TEntity item);
     }
-
-    //public class GenericRepository<TEntity> : RepositoryBase<TEntity>
-    //    where TEntity : class
-    //{
-    //    public GenericRepository(IContext context) : base(context) { }
-    //}
 }

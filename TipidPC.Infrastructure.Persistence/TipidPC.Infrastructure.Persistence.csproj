@@ -59,7 +59,7 @@
     <Compile Include="TpcContext.cs" />
     <Compile Include="ITpcContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TpcRepositoryBase.cs" />
+    <Compile Include="TpcRepository.cs" />
     <Compile Include="TpcUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
