@@ -66,17 +66,13 @@
       <Project>{b82308ee-03dc-4651-9714-1fc42b0780f7}</Project>
       <Name>TipidPc.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Domain.Models\TipidPC.Domain.Models.csproj">
+    <ProjectReference Include="..\TipidPC.Domain.Models\TipidPc.Domain.Models.csproj">
       <Project>{2a1b4fa7-6e04-441a-b4b5-48605761ac0c}</Project>
-      <Name>TipidPC.Domain.Models</Name>
+      <Name>TipidPc.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Domain\TipidPC.Domain.csproj">
+    <ProjectReference Include="..\TipidPC.Domain\TipidPc.Domain.csproj">
       <Project>{b822cd53-c6e3-4b35-8628-a883613b7b28}</Project>
-      <Name>TipidPC.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj">
-      <Project>{2734e4e8-c3b9-4beb-b7f4-88ec71425fef}</Project>
-      <Name>TipidPC.Infrastructure.Persistence</Name>
+      <Name>TipidPc.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

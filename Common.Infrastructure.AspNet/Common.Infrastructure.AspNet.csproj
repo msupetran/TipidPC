@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Identity\EntityFramework\GenericIdentityDbContext.cs" />
+    <Compile Include="Identity\EntityFramework\IdentityDbContextIntPk.cs" />
     <Compile Include="Identity\EntityFramework\RoleIntPk.cs" />
     <Compile Include="Identity\EntityFramework\UserClaimIntPk.cs" />
     <Compile Include="Identity\EntityFramework\UserLoginIntPk.cs" />

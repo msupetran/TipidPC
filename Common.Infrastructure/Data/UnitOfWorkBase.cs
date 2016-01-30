@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Common.Infrastructure.Specification;
 using Common.Infrastructure.Data;
 
-namespace TipidPC.Infrastructure.Persistence
+namespace TipidPc.Infrastructure.Data
 {
     public abstract class UnitOfWorkBase<TContext> : IUnitOfWork
         where TContext : IContext
@@ -34,9 +34,6 @@ namespace TipidPC.Infrastructure.Persistence
         }
         public abstract IRepository<TEntity> GetRepository<TEntity>()
             where TEntity : class;
-        //{
-        //    return this.GetRepository<TEntity, RepositoryBase<TEntity>>(_context);
-        //}
         public virtual IRepository<TEntity> GetRepository<TEntity, TRepository>(params object[] args)
             where TEntity : class
             where TRepository : IRepository<TEntity>

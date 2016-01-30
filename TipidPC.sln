@@ -1,21 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Domain.Models", "TipidPC.Domain.Models\TipidPC.Domain.Models.csproj", "{2A1B4FA7-6E04-441A-B4B5-48605761AC0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Domain.Models", "TipidPC.Domain.Models\TipidPc.Domain.Models.csproj", "{2A1B4FA7-6E04-441A-B4B5-48605761AC0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.0 Domain", "3.0 Domain", "{2B137509-FC8D-4A38-A79F-57A360A78883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Domain", "TipidPC.Domain\TipidPC.Domain.csproj", "{B822CD53-C6E3-4B35-8628-A883613B7B28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Domain", "TipidPC.Domain\TipidPc.Domain.csproj", "{B822CD53-C6E3-4B35-8628-A883613B7B28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure", "Common.Infrastructure\Common.Infrastructure.csproj", "{95446182-AD07-4E02-BA32-2920B31A541C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.0 Infrastructure", "4.0 Infrastructure", "{5842CCD9-5835-4B8A-AE42-F73091B5CF99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Domain.Test", "TipidPC.Domain.Test\TipidPC.Domain.Test.csproj", "{6A206692-7026-4F73-8361-400D24A1222E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPC.Infrastructure.Persistence", "TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj", "{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Domain.Test", "TipidPC.Domain.Test\TipidPc.Domain.Test.csproj", "{6A206692-7026-4F73-8361-400D24A1222E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0 Presentation", "1.0 Presentation", "{9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}"
 EndProject
@@ -32,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Application.Test", "TipidPc.Application.Test\TipidPc.Application.Test.csproj", "{D17CC1F2-534C-4DA8-94E9-D29D3823B8CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure.EntityFramework", "Common.Infrastructure.EntityFramework\Common.Infrastructure.EntityFramework.csproj", "{2460C181-FCBD-41C5-88AE-F71B92CD7990}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Infrastructure", "TipidPc.Infrastructure\TipidPc.Infrastructure.csproj", "{AD6DB31D-131D-4977-B219-609034DCF8EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,6 @@ Global
 		{6A206692-7026-4F73-8361-400D24A1222E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A206692-7026-4F73-8361-400D24A1222E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A206692-7026-4F73-8361-400D24A1222E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{039BF711-FC13-4C22-846B-DCD0ADE46BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{039BF711-FC13-4C22-846B-DCD0ADE46BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{039BF711-FC13-4C22-846B-DCD0ADE46BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,6 +79,10 @@ Global
 		{2460C181-FCBD-41C5-88AE-F71B92CD7990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2460C181-FCBD-41C5-88AE-F71B92CD7990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2460C181-FCBD-41C5-88AE-F71B92CD7990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,12 +92,12 @@ Global
 		{B822CD53-C6E3-4B35-8628-A883613B7B28} = {2B137509-FC8D-4A38-A79F-57A360A78883}
 		{95446182-AD07-4E02-BA32-2920B31A541C} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{6A206692-7026-4F73-8361-400D24A1222E} = {2B137509-FC8D-4A38-A79F-57A360A78883}
-		{2734E4E8-C3B9-4BEB-B7F4-88EC71425FEF} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{039BF711-FC13-4C22-846B-DCD0ADE46BEC} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
 		{4815EFB8-8E6D-400F-BD42-9772B9BE5FED} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{4D26A3BD-6993-4033-83B5-151BB675EF6F} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
 		{B82308EE-03DC-4651-9714-1FC42B0780F7} = {79452396-2587-4468-96FE-E6DBFF510657}
 		{D17CC1F2-534C-4DA8-94E9-D29D3823B8CB} = {79452396-2587-4468-96FE-E6DBFF510657}
 		{2460C181-FCBD-41C5-88AE-F71B92CD7990} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
+		{AD6DB31D-131D-4977-B219-609034DCF8EE} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 	EndGlobalSection
 EndGlobal

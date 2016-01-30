@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TipidPC.Domain.Models
+namespace TipidPc.Domain.Models
 {
     public class Topic
     {

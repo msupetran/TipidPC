@@ -4,7 +4,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TipidPC.Infrastructure.Persistence;
+using TipidPc.Domain.Models;
+using TipidPc.Infrastructure.Data;
+using TipidPc.Infrastructure.Domain;
 
 namespace TipidPC.Presentation.Web.Models
 {
@@ -25,7 +27,7 @@ namespace TipidPC.Presentation.Web.Models
     }
 
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser<int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>, Domain.Models.IUser
+    public class ApplicationUser : IdentityUser<int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>, TipidPc.Domain.Models.IUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager)
         {
@@ -51,5 +53,24 @@ namespace TipidPC.Presentation.Web.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().ToTable("User");
         }
+    }
+
+    public class TpcContextIntPk<TUser> : IdentityDbContextIntPk<TUser>, ITpcContext
+    where TUser : IdentityUser<int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    {
+        // Properties
+        public DbSet<Bookmark> Bookmarks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Entry> Entries { get; set; }
+        public DbSet<Header> Headers { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+
+        // Constructors
+        public TpcContextIntPk() : this("DefaultConnection") { }
+        public TpcContextIntPk(string connection) : base(connection) { }
     }
 }

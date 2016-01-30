@@ -6,8 +6,8 @@
     <ProjectGuid>{6A206692-7026-4F73-8361-400D24A1222E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TipidPC.Domain.Test</RootNamespace>
-    <AssemblyName>TipidPC.Domain.Test</AssemblyName>
+    <RootNamespace>TipidPc.Domain.Test</RootNamespace>
+    <AssemblyName>TipidPc.Domain.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -72,13 +72,13 @@
       <Project>{95446182-ad07-4e02-ba32-2920b31a541c}</Project>
       <Name>Common.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Domain.Models\TipidPC.Domain.Models.csproj">
+    <ProjectReference Include="..\TipidPC.Domain.Models\TipidPc.Domain.Models.csproj">
       <Project>{2a1b4fa7-6e04-441a-b4b5-48605761ac0c}</Project>
-      <Name>TipidPC.Domain.Models</Name>
+      <Name>TipidPc.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Domain\TipidPC.Domain.csproj">
+    <ProjectReference Include="..\TipidPC.Domain\TipidPc.Domain.csproj">
       <Project>{b822cd53-c6e3-4b35-8628-a883613b7b28}</Project>
-      <Name>TipidPC.Domain</Name>
+      <Name>TipidPc.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

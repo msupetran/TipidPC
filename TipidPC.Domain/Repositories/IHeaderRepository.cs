@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TipidPC.Domain.Models;
+using TipidPc.Domain.Models;
 
-namespace TipidPC.Domain
+namespace TipidPc.Domain
 {
     public interface IHeaderRepository : IRepository<Header>
     {

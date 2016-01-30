@@ -1,9 +1,9 @@
 ﻿using System;
 using Common.Infrastructure.Domain;
-using TipidPC.Domain.Models;
+using TipidPc.Domain.Models;
 using Common.Infrastructure.Specification;
 
-namespace TipidPC.Domain
+namespace TipidPc.Domain
 {
     public class ItemManager
     {

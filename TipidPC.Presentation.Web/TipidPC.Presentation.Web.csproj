@@ -284,9 +284,9 @@
       <Project>{b822cd53-c6e3-4b35-8628-a883613b7b28}</Project>
       <Name>TipidPC.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TipidPC.Infrastructure.Persistence\TipidPC.Infrastructure.Persistence.csproj">
-      <Project>{2734e4e8-c3b9-4beb-b7f4-88ec71425fef}</Project>
-      <Name>TipidPC.Infrastructure.Persistence</Name>
+    <ProjectReference Include="..\TipidPc.Infrastructure\TipidPc.Infrastructure.csproj">
+      <Project>{ad6db31d-131d-4977-b219-609034dcf8ee}</Project>
+      <Name>TipidPc.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

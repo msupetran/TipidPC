@@ -1,11 +1,11 @@
 ﻿using System;
 using Common.Infrastructure.Domain;
 using Common.Infrastructure.Data;
-using TipidPC.Domain.Models;
+using TipidPc.Domain.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace TipidPC.Application
+namespace TipidPc.Application
 {
     public class ItemService
     {

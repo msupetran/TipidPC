@@ -1,14 +1,10 @@
-﻿using Common.Infrastructure.Data;
-using Common.Infrastructure.Domain;
+﻿using Common.Infrastructure.Domain;
 using Common.Infrastructure.Specification;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using TipidPC.Domain.Models;
-using TipidPC.Infrastructure.Persistence;
+using System.Collections.Generic;
+using TipidPc.Domain.Models;
+using TipidPc.Infrastructure.Data;
 
 namespace ConsoleApplication1
 {
@@ -71,7 +67,11 @@ namespace ConsoleApplication1
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.InnerException.Message);
+                Console.WriteLine(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(ex.InnerException.Message); 
+                }
                 Console.WriteLine(ex.GetType().ToString());
             }
             finally
@@ -109,7 +109,7 @@ namespace ConsoleApplication1
             
             var category = new Category()
             {
-                Name = "Hard Disk Drives",
+                Name = "Processors",
                 Created = Timestamp,
                 Updated = Timestamp
             };
@@ -127,14 +127,14 @@ namespace ConsoleApplication1
             
             var header = new Header()
             {
-                Title = string.Empty.PadRight(50, 'H'),
+                Title = string.Empty.PadRight(50, 'X'),
                 UserId = 1,
                 Created = Timestamp,
                 Updated = Timestamp
             };
             var entry = new Entry()
             {
-                Message = string.Empty.PadRight(2000, 'M'),
+                Message = string.Empty.PadRight(2000, 'Y'),
                 Created = Timestamp,
                 Updated = Timestamp
             };
@@ -142,7 +142,7 @@ namespace ConsoleApplication1
             {
                 Header = header,
                 Entry = entry,
-                //CategoryId = 2,
+                CategoryId = 2,
                 UserId = 1,
                 Amount = 300,
                 Section = ItemSection.ForSale,

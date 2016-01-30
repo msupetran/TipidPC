@@ -7,8 +7,8 @@
     <ProjectGuid>{2A1B4FA7-6E04-441A-B4B5-48605761AC0C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TipidPC.Domain.Models</RootNamespace>
-    <AssemblyName>TipidPC.Domain.Models</AssemblyName>
+    <RootNamespace>TipidPc.Domain.Models</RootNamespace>
+    <AssemblyName>TipidPc.Domain.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
