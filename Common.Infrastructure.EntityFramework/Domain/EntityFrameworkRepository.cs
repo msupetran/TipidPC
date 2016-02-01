@@ -50,15 +50,15 @@ namespace Common.Infrastructure.Domain
                 .Where(spec.Expression)
                 .ToList();
         }
-        public override IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] paths)
+        public override IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] included)
         {
             var entities = this.Context
                 .Set<TEntity>()
-                .Include(paths.First());
+                .Include(included.First());
 
-            for (int i = 1; i < paths.Length; i++)
+            for (int i = 1; i < included.Length; i++)
             {
-                entities = entities.Include(paths[i]);
+                entities = entities.Include(included[i]);
             }
 
             return entities
@@ -72,6 +72,26 @@ namespace Common.Infrastructure.Domain
                 this.Context.Set<TEntity>().Attach(entity);
             }
             this.Context.Entry(entity).State = EntityState.Modified;
+        }
+        public override void Update(TEntity entity, params Expression<Func<TEntity, object>>[] excludedProperties)
+        {
+            if (this.Context.Entry(entity).State == EntityState.Detached)
+            {
+                this.Context.Set<TEntity>().Attach(entity);
+
+                var entry = this.Context.Entry(entity);
+                var databaseValues = entry.GetDatabaseValues();
+
+                foreach (var propertyName in databaseValues.PropertyNames)
+                {
+                    entry.Property(propertyName).IsModified = true;
+                }
+                
+                foreach (var property in excludedProperties)
+                {
+                    entry.Property(property).IsModified = false;
+                }
+            }
         }
         public override void Delete(object id)
         {

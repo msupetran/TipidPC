@@ -17,6 +17,7 @@ namespace Common.Infrastructure.Domain
         IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] paths);
         TEntity Insert(TEntity entity);
         void Update(TEntity entity);
+        void Update(TEntity entity, params Expression<Func<TEntity, object>>[] paths);
         void Delete(object id);
         void Delete(TEntity entity);
     }

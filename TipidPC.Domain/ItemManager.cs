@@ -2,13 +2,23 @@
 using Common.Infrastructure.Domain;
 using TipidPc.Domain.Models;
 using Common.Infrastructure.Specification;
+using System.Linq;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TipidPc.Domain
 {
     public class ItemManager
     {
-        // Fieldsy;
+        // Fields;
         private IRepository<Item> _itemRepository;
+        List<ValidationResult> _validationErrors = new List<ValidationResult>();
+
+        // Properties
+        public List<ValidationResult> ValidationErrors
+        {
+            get { return _validationErrors; }
+        }
 
         // Constructors
         public ItemManager(IRepository<Item> itemRepository)
@@ -19,15 +29,66 @@ namespace TipidPc.Domain
         // Methods
         public void InsertItem(Item item)
         {
-            // Validate other fields here...
-            // to do: add validation code
-            if (string.IsNullOrEmpty(item.Header.Title.Trim()))
+            var currentDate = DateTime.Now;
+            item.Id = 0; 
+            item.Created = currentDate;
+            item.Updated = currentDate;
+            item.Expiry = currentDate.AddDays((double)item.Duration);
+
+            if (item.Header != null)
             {
-                throw new ApplicationException("Header.Title is blank.");
+                item.Header.Created = currentDate;
+                item.Header.Created = currentDate;
             }
 
+            if (item.Entry != null)
+            {
+                item.Entry.Created = currentDate;
+                item.Entry.Updated = currentDate;
+            }
+            
             // Insert item
-            _itemRepository.Insert(item);
+            if (Validate(item).Count() == 0)
+            {
+                _itemRepository.Insert(item);
+            }
+        }
+        public void UpdateItem(Item newItem)
+        {
+            var currentDate = DateTime.Now;
+            newItem.Updated = currentDate;
+
+            if (this.Validate(newItem).Count() == 0)
+            {
+                _itemRepository.Update(newItem,
+                    a => a.HeaderId,
+                    a => a.EntryId,
+                    a => a.UserId,
+                    a => a.Created, 
+                    a => a.Expiry);
+            }
+        }
+        private List<ValidationResult> Validate(Item item)
+        {
+            // Validate item
+            var itemValidator = new EntityValidator<Item>();
+            _validationErrors.AddRange(itemValidator.GetValidationErrors(item));
+
+            // Validate header
+            if (item.Header != null)
+            {
+                var headerValidator = new EntityValidator<Header>();
+                _validationErrors.AddRange(headerValidator.GetValidationErrors(item.Header));
+            }
+
+            // Validate entry
+            if (item.Entry != null)
+            {
+                var entryValidator = new EntityValidator<Entry>();
+                _validationErrors.AddRange(entryValidator.GetValidationErrors(item.Entry));
+            }
+
+            return _validationErrors;
         }
     }
 }

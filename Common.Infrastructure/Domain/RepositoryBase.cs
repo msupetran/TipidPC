@@ -36,6 +36,7 @@ namespace Common.Infrastructure.Domain
         public abstract IEnumerable<TEntity> Select(ISpecification<TEntity> spec);
         public abstract IEnumerable<TEntity> Select(ISpecification<TEntity> spec, params Expression<Func<TEntity, object>>[] paths);
         public abstract void Update(TEntity entity);
+        public abstract void Update(TEntity entity, params Expression<Func<TEntity, object>>[] paths);
         public abstract void Delete(object id);
         public abstract void Delete(TEntity item);
     }
