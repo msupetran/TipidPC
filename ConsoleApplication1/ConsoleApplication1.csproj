@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201601300646358_RecreateDatabase.cs" />
-    <Compile Include="Migrations\201601300646358_RecreateDatabase.Designer.cs">
-      <DependentUpon>201601300646358_RecreateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201602020559106_AddDurationColumn.cs" />
+    <Compile Include="Migrations\201602020559106_AddDurationColumn.Designer.cs">
+      <DependentUpon>201602020559106_AddDurationColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -98,8 +98,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601300646358_RecreateDatabase.resx">
-      <DependentUpon>201601300646358_RecreateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602020559106_AddDurationColumn.resx">
+      <DependentUpon>201602020559106_AddDurationColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

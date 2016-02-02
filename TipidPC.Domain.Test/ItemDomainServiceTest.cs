@@ -133,7 +133,7 @@ namespace TipidPc.Domain.Test
 
         // QueryItem tests...
         [TestMethod]
-        public void QueryItemsTest()
+        public void QueryItems()
         {
             // Arrange
             CreateItemList();
@@ -151,7 +151,7 @@ namespace TipidPc.Domain.Test
                 Times.Once());
         }
         [TestMethod]
-        public void QueryItemByIdTest()
+        public void QueryItemById()
         {
             // Arrange
             var id = 1;
@@ -191,7 +191,7 @@ namespace TipidPc.Domain.Test
                 Times.Once());
         }
         [TestMethod]
-        public void QueryItemsHeaderShouldNotBeNullTest()
+        public void QueryItemsHeaderShouldNotBeNull()
         {
             // Arrange
             CreateItemList();
@@ -210,7 +210,7 @@ namespace TipidPc.Domain.Test
                 Times.Once());
         }
         [TestMethod]
-        public void QueryItemsEntryShouldNotBeNullTest()
+        public void QueryItemsEntryShouldNotBeNull()
         {
             // Arrange
             CreateItemList();
@@ -231,7 +231,7 @@ namespace TipidPc.Domain.Test
 
         // AddItem tests...
         [TestMethod]
-        public void AddItemWithAllFieldsValidTest()
+        public void AddItemWithAllFieldsValid()
         {
             // Arrange
             CreateItem();
@@ -245,7 +245,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Once());
         }
         [TestMethod]
-        public void AddItemWithHeaderIsNullOrEmptyTest()
+        public void AddItemWithHeaderIsNullOrEmpty()
         {
             // Arrange
             CreateItem();
@@ -266,7 +266,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithHeaderTitleIsNullOrEmptyTest()
+        public void AddItemWithHeaderTitleIsNullOrEmpty()
         {
             // Arrange
             CreateItem();
@@ -287,7 +287,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithHeaderTitleExceedsMaxLengthTest()
+        public void AddItemWithHeaderTitleExceedsMaxLength()
         {
             // Arrange
             CreateItem();
@@ -308,7 +308,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithEntryIsNullOrEmptyTest()
+        public void AddItemWithEntryIsNullOrEmpty()
         {
             // Arrange
             CreateItem();
@@ -329,7 +329,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithEntryMessageIsNullOrEmptyTest()
+        public void AddItemWithEntryMessageIsNullOrEmpty()
         {
             // Arrange
             CreateItem();
@@ -350,7 +350,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithEntryMessageExceedsMaxLengthTest()
+        public void AddItemWithEntryMessageExceedsMaxLength()
         {
             // Arrange
             CreateItem();
@@ -371,7 +371,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithAmountIsBelowMinValueTest()
+        public void AddItemWithAmountIsBelowMinValue()
         {
             // Arrange
             CreateItem();
@@ -392,7 +392,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithAmountExceedsMaxValueTest()
+        public void AddItemWithAmountExceedsMaxValue()
         {
             // Arrange
             CreateItem();
@@ -413,7 +413,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void AddItemWithExpiryIsFifteenDaysTest()
+        public void AddItemWithExpiryIsFifteenDays()
         {
             // Arrange
             CreateItem();
@@ -428,7 +428,7 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Once());
         }
         [TestMethod]
-        public void AddItemWithExpiryIsThirtyDaysTest()
+        public void AddItemWithExpiryIsThirtyDays()
         {
             // Arrange
             CreateItem();
@@ -446,7 +446,7 @@ namespace TipidPc.Domain.Test
 
         // UpdateItem tests...
         [TestMethod]
-        public void UpdateItemWithAllFieldsValidTest()
+        public void UpdateItemWithAllFieldsValid()
         {
             // Arrange
             CreateItemToUpdate();
@@ -466,7 +466,7 @@ namespace TipidPc.Domain.Test
                 It.IsAny<Expression<Func<Item, object>>[]>()), Times.Once());
         }
         [TestMethod]
-        public void UpdateItemWithHeaderIsNullOrEmptyTest()
+        public void UpdateItemWithHeaderIsNullOrEmpty()
         {
             // Arrange
             CreateItemToUpdate();
@@ -492,7 +492,7 @@ namespace TipidPc.Domain.Test
                 It.IsAny<Expression<Func<Item, object>>[]>()), Times.Never());
         }
         [TestMethod]
-        public void UpdateItemWithHeaderTitleIsNullOrEmptyTestTest()
+        public void UpdateItemWithHeaderTitleIsNullOrEmptyTest()
         {
             // Arrange
             CreateItemToUpdate();

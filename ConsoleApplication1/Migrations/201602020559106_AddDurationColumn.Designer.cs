@@ -7,13 +7,13 @@ namespace ConsoleApplication1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RecreateDatabase : IMigrationMetadata
+    public sealed partial class AddDurationColumn : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RecreateDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDurationColumn));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601300646358_RecreateDatabase"; }
+            get { return "201602020559106_AddDurationColumn"; }
         }
         
         string IMigrationMetadata.Source

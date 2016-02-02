@@ -35,7 +35,6 @@ namespace ConsoleApplication1
         {
             try
             {
-                /*
                 var items = GetItems();
                 if (items != null)
                 {
@@ -53,8 +52,8 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Failed to retrieve item.");
                 }
-                */
-                
+
+                /*
                 var insertedRecords = InsertItem();
                 if (insertedRecords > 0)
                 {
@@ -64,6 +63,7 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Insert failed.");
                 }
+                */
             }
             catch (Exception ex)
             {
@@ -96,10 +96,10 @@ namespace ConsoleApplication1
                 var include = new PropertyNavigator<Item>()
                     .Include(i => i.Header)
                     .Include(i => i.Entry)
-                    .Include(i => i.Category);
+                    .Properties;
 
                 return itemRepository
-                    .Select(spec, include.Properties)
+                    .Select(spec, include)
                     .ToList();
             }
         }
