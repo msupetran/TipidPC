@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 namespace TipidPc.Domain.Test
 {
     [TestClass]
-    public class ItemManagerTest
+    public class ItemDomainService
     {
         // Fields
         private Mock<IRepository<Item>> _mockItemRepository;
@@ -90,6 +90,8 @@ namespace TipidPc.Domain.Test
             _itemForUpdate.Header.Title = string.Empty.PadRight(50, 'X');
             _itemForUpdate.Entry.Message = string.Empty.PadRight(2000, 'Y');
         }
+
+        // 
 
         // InsertItem tests...
         [TestMethod]
