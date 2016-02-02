@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TipidPc.Domain
 {
-    public class ItemManager
+    public class ItemDomainService
     {
         // Fields;
         private IRepository<Item> _itemRepository;
@@ -21,7 +21,7 @@ namespace TipidPc.Domain
         }
 
         // Constructors
-        public ItemManager(IRepository<Item> itemRepository)
+        public ItemDomainService(IRepository<Item> itemRepository)
         {
             _itemRepository = itemRepository;
         }

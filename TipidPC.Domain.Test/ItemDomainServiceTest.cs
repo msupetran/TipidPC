@@ -11,12 +11,12 @@ using System.Linq.Expressions;
 namespace TipidPc.Domain.Test
 {
     [TestClass]
-    public class ItemDomainService
+    public class ItemDomainServiceTest
     {
         // Fields
         private Mock<IRepository<Item>> _mockItemRepository;
         private Mock<IUnitOfWork> _mockUow;
-        private ItemManager _sut;
+        private ItemDomainService _sut;
         private Item _itemToInsert;
         private Item _itemForUpdate;
         private Header _header;
@@ -44,7 +44,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemToInsert);
             
             // Sut
-            _sut = new ItemManager(_mockItemRepository.Object);
+            _sut = new ItemDomainService(_mockItemRepository.Object);
         }
 
         // Non-test methods
