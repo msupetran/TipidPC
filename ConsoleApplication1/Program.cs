@@ -165,7 +165,7 @@ namespace ConsoleApplication1
 
     class ApplicationDbContext : TpcContext
     {
-        public ApplicationDbContext()
+        public ApplicationDbContext() : base("Office")
         {
         }
     }

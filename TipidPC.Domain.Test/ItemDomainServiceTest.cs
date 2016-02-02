@@ -7,6 +7,8 @@ using Common.Infrastructure.Data;
 using Common.Infrastructure.Domain;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Collections.Generic;
+using Common.Infrastructure.Specification;
 
 namespace TipidPc.Domain.Test
 {
@@ -17,18 +19,25 @@ namespace TipidPc.Domain.Test
         private Mock<IRepository<Item>> _mockItemRepository;
         private Mock<IUnitOfWork> _mockUow;
         private ItemDomainService _sut;
-        private Item _itemToInsert;
-        private Item _itemForUpdate;
+        private Item _item;
+        private List<Item> _itemList;
         private Header _header;
         private Entry _entry;
-        
+
         // Initialization
         [TestInitialize]
         public void Initialize()
         {
-            // Entities
-            CreateItemToInsert();
-            CreateItemForUpdate();
+            // Item navigation properties
+            _header = new Header()
+            {
+                Title = string.Empty.PadRight(50, 'H'),
+                UserId = 1
+            };
+            _entry = new Entry()
+            {
+                Message = string.Empty.PadRight(2000, 'M')
+            };
 
             // Mock
             _mockItemRepository = new Mock<IRepository<Item>>();
@@ -41,25 +50,14 @@ namespace TipidPc.Domain.Test
                 .Returns(3);
             _mockItemRepository
                 .Setup(r => r.Insert(It.IsAny<Item>()))
-                .Returns(_itemToInsert);
-            
+                .Returns(_item);
+
             // Sut
             _sut = new ItemDomainService(_mockItemRepository.Object);
         }
-
-        // Non-test methods
-        private void CreateItemToInsert()
+        private void CreateItem()
         {
-            _header = new Header()
-            {
-                Title = string.Empty.PadRight(50, 'H'),
-                UserId = 1
-            };
-            _entry = new Entry()
-            {
-                Message = string.Empty.PadRight(2000, 'M')
-            };
-            _itemToInsert = new Item()
+            _item = new Item()
             {
                 Header = _header,
                 Entry = _entry,
@@ -72,9 +70,9 @@ namespace TipidPc.Domain.Test
                 Duration = ItemDuration.FifteenDays
             };
         }
-        private void CreateItemForUpdate()
+        private void CreateItemToUpdate()
         {
-            _itemForUpdate = new Item()
+            _item = new Item()
             {
                 Id = 1,
                 Header = _header,
@@ -87,21 +85,159 @@ namespace TipidPc.Domain.Test
                 Warranty = ItemWarranty.Shop,
                 Duration = ItemDuration.FifteenDays
             };
-            _itemForUpdate.Header.Title = string.Empty.PadRight(50, 'X');
-            _itemForUpdate.Entry.Message = string.Empty.PadRight(2000, 'Y');
+            _item.Header.Title = string.Empty.PadRight(50, 'X');
+            _item.Entry.Message = string.Empty.PadRight(2000, 'Y');
+        }
+        private void CreateItemList()
+        {
+            _itemList = new List<Item>();
+            _itemList.AddRange(new Item[] {
+                new Item()
+                {
+                    Id = 1,
+                    //Header = new Header() { Id = 2, Title = "Item No. 1" },
+                    //Entry = new Entry() { Id = 2, Message = "This is item no. 1." },
+                    CategoryId = 2,
+                    UserId = 1,
+                    Amount = 300,
+                    Section = ItemSection.ForSale,
+                    Condition = ItemCondition.BrandNew,
+                    Warranty = ItemWarranty.Personal,
+                    Duration = ItemDuration.FifteenDays
+                },
+                new Item()
+                {
+                    Id = 2,
+                    //Header = new Header() { Id = 2, Title = "Item No. 2" },
+                    //Entry = new Entry() { Id = 2, Message = "This is item no. 2." },
+                    CategoryId = 2,
+                    UserId = 2,
+                    Amount = 600,
+                    Section = ItemSection.WantToBuy,
+                    Condition = ItemCondition.Used,
+                    Warranty = ItemWarranty.Shop,
+                    Duration = ItemDuration.ThirtyDays
+                }
+            });
+        }
+        private void CreateItemHeader()
+        {
+            _itemList[0].Header = new Header() { Id = 2, Title = "Item No. 1" };
+            _itemList[1].Header = new Header() { Id = 2, Title = "Item No. 2" };
+        }
+        private void CreateItemEntry()
+        {
+            _itemList[0].Entry = new Entry() { Id = 2, Message = "This is item no. 1." };
+            _itemList[1].Entry = new Entry() { Id = 2, Message = "This is item no. 2." };
         }
 
-        // 
-
-        // InsertItem tests...
+        // QueryItem tests...
         [TestMethod]
-        public void InsertItemWithAllFieldsValidTest()
+        public void QueryItemsTest()
         {
             // Arrange
-            // Everything was already arranged during initialization...
+            CreateItemList();
+            _mockItemRepository
+                .Setup(r => r.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()))
+                .Returns(_itemList);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            var result = _sut.QueryItems();
+
+            // Assert
+            Assert.IsTrue(result.Count() == 2);
+            _mockItemRepository.Verify(
+                a => a.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()),
+                Times.Once());
+        }
+        [TestMethod]
+        public void QueryItemByIdTest()
+        {
+            // Arrange
+            var id = 1;
+            CreateItemList();
+            _mockItemRepository
+                .Setup(r => r.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()))
+                .Returns(_itemList.Where(a => a.Id == id));
+
+            // Act
+            var result = _sut.QueryItemById(id);
+
+            // Assert
+            Assert.IsTrue(result != null);
+            Assert.IsTrue(result.Id == 1);
+            _mockItemRepository.Verify(
+                a => a.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()),
+                Times.Once());
+        }
+        [TestMethod]
+        public void QueryItemsByUserId()
+        {
+            // Arrange
+            var userId = 2;
+            CreateItemList();
+            _mockItemRepository
+                .Setup(r => r.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()))
+                .Returns(_itemList.Where(i => i.UserId == userId));
+
+            // Act
+            var result = _sut.QueryItemsByUserId(userId);
+
+            // Assert
+            Assert.IsTrue(result.Count() == 1);
+            Assert.IsTrue(result.FirstOrDefault() != null && result.FirstOrDefault().UserId == 2);
+            _mockItemRepository.Verify(
+                a => a.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()),
+                Times.Once());
+        }
+        [TestMethod]
+        public void QueryItemsHeaderShouldNotBeNullTest()
+        {
+            // Arrange
+            CreateItemList();
+            CreateItemHeader();
+            _mockItemRepository
+                .Setup(r => r.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()))
+                .Returns(_itemList);
+
+            // Act
+            var result = _sut.QueryItems();
+
+            // Assert
+            Assert.IsTrue(result.Count(a => a.Header == null) == 0);
+            _mockItemRepository.Verify(
+                a => a.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()),
+                Times.Once());
+        }
+        [TestMethod]
+        public void QueryItemsEntryShouldNotBeNullTest()
+        {
+            // Arrange
+            CreateItemList();
+            CreateItemEntry();
+            _mockItemRepository
+                .Setup(r => r.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()))
+                .Returns(_itemList);
+
+            // Act
+            var result = _sut.QueryItems();
+
+            // Assert
+            Assert.IsTrue(result.Count(a => a.Entry == null) == 0);
+            _mockItemRepository.Verify(
+                a => a.Select(It.IsAny<ISpecification<Item>>(), It.IsAny<Expression<Func<Item, object>>[]>()), 
+                Times.Once());
+        }
+
+        // AddItem tests...
+        [TestMethod]
+        public void AddItemWithAllFieldsValidTest()
+        {
+            // Arrange
+            CreateItem();
+
+            // Act
+            _sut.AddItem(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
@@ -109,16 +245,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Once());
         }
         [TestMethod]
-        public void InsertItemWithHeaderIsNullOrEmptyTest()
+        public void AddItemWithHeaderIsNullOrEmptyTest()
         {
             // Arrange
-            _itemToInsert.Header = null;
+            CreateItem();
+            _item.Header = null;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -129,16 +266,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithHeaderTitleIsNullOrEmptyTest()
+        public void AddItemWithHeaderTitleIsNullOrEmptyTest()
         {
             // Arrange
-            _itemToInsert.Header.Title = string.Empty;
+            CreateItem();
+            _item.Header.Title = string.Empty;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -149,16 +287,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithHeaderTitleExceedsMaxLengthTest()
+        public void AddItemWithHeaderTitleExceedsMaxLengthTest()
         {
             // Arrange
-            _itemToInsert.Header.Title = string.Empty.PadRight(51, '-');
+            CreateItem();
+            _item.Header.Title = string.Empty.PadRight(51, '-');
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -169,16 +308,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithEntryIsNullOrEmptyTest()
+        public void AddItemWithEntryIsNullOrEmptyTest()
         {
             // Arrange
-            _itemToInsert.Entry = null;
+            CreateItem();
+            _item.Entry = null;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -189,16 +329,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithEntryMessageIsNullOrEmptyTest()
+        public void AddItemWithEntryMessageIsNullOrEmptyTest()
         {
             // Arrange
-            _itemToInsert.Entry.Message = string.Empty;
+            CreateItem();
+            _item.Entry.Message = string.Empty;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -209,16 +350,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithEntryMessageExceedsMaxLengthTest()
+        public void AddItemWithEntryMessageExceedsMaxLengthTest()
         {
             // Arrange
-            _itemToInsert.Entry.Message = string.Empty.PadRight(2001, '-');
+            CreateItem();
+            _item.Entry.Message = string.Empty.PadRight(2001, '-');
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -229,16 +371,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithAmountIsBelowMinValueTest()
+        public void AddItemWithAmountIsBelowMinValueTest()
         {
             // Arrange
-            _itemToInsert.Amount = 0;
+            CreateItem();
+            _item.Amount = 0;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -249,16 +392,17 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithAmountExceedsMaxValueTest()
+        public void AddItemWithAmountExceedsMaxValueTest()
         {
             // Arrange
-            _itemToInsert.Amount = 1000000;
+            CreateItem();
+            _item.Amount = 1000000;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -269,32 +413,33 @@ namespace TipidPc.Domain.Test
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Never());
         }
         [TestMethod]
-        public void InsertItemWithExpiryIsFifteenDaysTest()
+        public void AddItemWithExpiryIsFifteenDaysTest()
         {
             // Arrange
-            // Duration is already set to 15 Days...
+            CreateItem();
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
-            Assert.IsTrue(_itemToInsert.Expiry.Day == DateTime.Now.AddDays(15).Day);
+            Assert.IsTrue(_item.Expiry.Day == DateTime.Now.AddDays(15).Day);
             Assert.IsTrue(result == 3);
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Once());
         }
         [TestMethod]
-        public void InsertItemWithExpiryIsThirtyDaysTest()
+        public void AddItemWithExpiryIsThirtyDaysTest()
         {
             // Arrange
-            _itemToInsert.Duration = ItemDuration.ThirtyDays;
+            CreateItem();
+            _item.Duration = ItemDuration.ThirtyDays;
 
             // Act
-            _sut.InsertItem(_itemToInsert);
+            _sut.AddItem(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
-            Assert.IsTrue(_itemToInsert.Expiry.Day == DateTime.Now.AddDays(30).Day);
+            Assert.IsTrue(_item.Expiry.Day == DateTime.Now.AddDays(30).Day);
             Assert.IsTrue(result == 3);
             _mockItemRepository.Verify(a => a.Insert(It.IsAny<Item>()), Times.Once());
         }
@@ -304,17 +449,18 @@ namespace TipidPc.Domain.Test
         public void UpdateItemWithAllFieldsValidTest()
         {
             // Arrange
+            CreateItemToUpdate();
             _mockItemRepository
                 .Setup(r => r.Update(It.IsAny<Item>()))
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_itemForUpdate);
+            _sut.UpdateItem(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
             Assert.IsTrue(result == 3);
-            Assert.IsTrue(_itemForUpdate.Updated.Date == DateTime.Now.Date);
+            Assert.IsTrue(_item.Updated.Date == DateTime.Now.Date);
             _mockItemRepository.Verify(a => a.Update(
                 It.IsAny<Item>(), 
                 It.IsAny<Expression<Func<Item, object>>[]>()), Times.Once());
@@ -323,7 +469,8 @@ namespace TipidPc.Domain.Test
         public void UpdateItemWithHeaderIsNullOrEmptyTest()
         {
             // Arrange
-            _itemForUpdate.Header = null;
+            CreateItemToUpdate();
+            _item.Header = null;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
@@ -332,7 +479,7 @@ namespace TipidPc.Domain.Test
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_itemForUpdate);
+            _sut.UpdateItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -348,7 +495,8 @@ namespace TipidPc.Domain.Test
         public void UpdateItemWithHeaderTitleIsNullOrEmptyTestTest()
         {
             // Arrange
-            _itemForUpdate.Header.Title = null;
+            CreateItemToUpdate();
+            _item.Header.Title = null;
             _mockUow
                 .Setup(u => u.Commit())
                 .Returns(0);
@@ -357,7 +505,7 @@ namespace TipidPc.Domain.Test
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_itemForUpdate);
+            _sut.UpdateItem(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 

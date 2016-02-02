@@ -5,6 +5,7 @@ using Common.Infrastructure.Specification;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace TipidPc.Domain
 {
@@ -13,6 +14,10 @@ namespace TipidPc.Domain
         // Fields;
         private IRepository<Item> _itemRepository;
         List<ValidationResult> _validationErrors = new List<ValidationResult>();
+        Expression<Func<Item, object>>[] _includedProperties = new PropertyNavigator<Item>()
+            .Include(i => i.Header)
+            .Include(i => i.Entry)
+            .Properties;
 
         // Properties
         public List<ValidationResult> ValidationErrors
@@ -27,7 +32,27 @@ namespace TipidPc.Domain
         }
 
         // Methods
-        public void InsertItem(Item item)
+        public Item QueryItemById(int id)
+        {
+            var itemIdSpec = new ExpressionSpecification<Item>(i => i.Id == id);
+            var items = _itemRepository
+                .Select(itemIdSpec, _includedProperties)
+                .SingleOrDefault();
+            return items;
+        }
+        public IEnumerable<Item> QueryItems()
+        {
+            var allSpec = new ExpressionSpecification<Item>();
+            var items = _itemRepository.Select(allSpec, _includedProperties);
+            return items;
+        }
+        public IEnumerable<Item> QueryItemsByUserId(int userId)
+        {
+            var itemUserIdSpec = new ExpressionSpecification<Item>(i => i.UserId == userId);
+            var items = _itemRepository.Select(itemUserIdSpec, _includedProperties);
+            return items;
+        }
+        public void AddItem(Item item)
         {
             var currentDate = DateTime.Now;
             item.Id = 0; 
