@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Domain.Models", "TipidPC.Domain.Models\TipidPc.Domain.Models.csproj", "{2A1B4FA7-6E04-441A-B4B5-48605761AC0C}"
 EndProject
@@ -32,6 +32,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure.EntityFramework", "Common.Infrastructure.EntityFramework\Common.Infrastructure.EntityFramework.csproj", "{2460C181-FCBD-41C5-88AE-F71B92CD7990}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Infrastructure", "TipidPc.Infrastructure\TipidPc.Infrastructure.csproj", "{AD6DB31D-131D-4977-B219-609034DCF8EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Presentation.WebApi", "TipidPc.Presentation.WebApi\TipidPc.Presentation.WebApi.csproj", "{665670BA-0E4E-4B80-B022-EA521E1933B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipidPc.Presentation.WebApi.Tests", "TipidPc.Presentation.WebApi.Tests\TipidPc.Presentation.WebApi.Tests.csproj", "{C9767981-392B-4CC6-A690-AE134440DF60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD6DB31D-131D-4977-B219-609034DCF8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665670BA-0E4E-4B80-B022-EA521E1933B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665670BA-0E4E-4B80-B022-EA521E1933B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665670BA-0E4E-4B80-B022-EA521E1933B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665670BA-0E4E-4B80-B022-EA521E1933B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9767981-392B-4CC6-A690-AE134440DF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9767981-392B-4CC6-A690-AE134440DF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9767981-392B-4CC6-A690-AE134440DF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9767981-392B-4CC6-A690-AE134440DF60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,5 +111,7 @@ Global
 		{D17CC1F2-534C-4DA8-94E9-D29D3823B8CB} = {79452396-2587-4468-96FE-E6DBFF510657}
 		{2460C181-FCBD-41C5-88AE-F71B92CD7990} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
 		{AD6DB31D-131D-4977-B219-609034DCF8EE} = {5842CCD9-5835-4B8A-AE42-F73091B5CF99}
+		{665670BA-0E4E-4B80-B022-EA521E1933B8} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
+		{C9767981-392B-4CC6-A690-AE134440DF60} = {9DEB239B-DD17-4470-AAB3-08FAADDC1F0C}
 	EndGlobalSection
 EndGlobal
