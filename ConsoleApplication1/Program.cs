@@ -35,6 +35,7 @@ namespace ConsoleApplication1
         {
             try
             {
+                /*
                 var items = GetItems();
                 if (items != null)
                 {
@@ -52,8 +53,8 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Failed to retrieve item.");
                 }
-
-                /*
+                */
+                
                 var insertedRecords = InsertItem();
                 if (insertedRecords > 0)
                 {
@@ -63,7 +64,7 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine("Insert failed.");
                 }
-                */
+                
             }
             catch (Exception ex)
             {
@@ -142,7 +143,7 @@ namespace ConsoleApplication1
             {
                 Header = header,
                 Entry = entry,
-                CategoryId = 2,
+                CategoryId = 1,
                 UserId = 1,
                 Amount = 300,
                 Section = ItemSection.ForSale,
@@ -165,7 +166,7 @@ namespace ConsoleApplication1
 
     class ApplicationDbContext : TpcContext
     {
-        public ApplicationDbContext() : base("Office")
+        public ApplicationDbContext() : base("Cloud")
         {
         }
     }

@@ -7,13 +7,13 @@ namespace ConsoleApplication1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddDurationColumn : IMigrationMetadata
+    public sealed partial class RecreatedatabaseinAzureSQLServer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDurationColumn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RecreatedatabaseinAzureSQLServer));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602020559106_AddDurationColumn"; }
+            get { return "201602090452134_Recreate database in Azure SQL Server."; }
         }
         
         string IMigrationMetadata.Source

@@ -52,16 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201602020559106_AddDurationColumn.cs" />
-    <Compile Include="Migrations\201602020559106_AddDurationColumn.Designer.cs">
-      <DependentUpon>201602020559106_AddDurationColumn.cs</DependentUpon>
+    <Compile Include="Migrations\201602090452134_Recreate database in Azure SQL Server..cs" />
+    <Compile Include="Migrations\201602090452134_Recreate database in Azure SQL Server..Designer.cs">
+      <DependentUpon>201602090452134_Recreate database in Azure SQL Server..cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +100,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602020559106_AddDurationColumn.resx">
-      <DependentUpon>201602020559106_AddDurationColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602090452134_Recreate database in Azure SQL Server..resx">
+      <DependentUpon>201602090452134_Recreate database in Azure SQL Server..cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

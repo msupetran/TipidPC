@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Web.Http;
 using TipidPc.Domain;
 using TipidPc.Domain.Models;
+using TipidPc.Infrastructure.Data;
+using TipidPc.Infrastructure.Domain;
 using TipidPc.Presentation.WebApi.Models;
 
 namespace TipidPc.Presentation.WebApi.Controllers
@@ -17,9 +19,10 @@ namespace TipidPc.Presentation.WebApi.Controllers
         private ItemDomainService _itemDomainService;
 
         // Constructors
-        public ItemsController(IRepository<Item> _itemRepository)
+        public ItemsController()
         {
-            _itemDomainService = new ItemDomainService(_itemRepository);
+            var itemRepository = new TpcRepository<Item>(new TpcContext());
+            _itemDomainService = new ItemDomainService(itemRepository);
         }
 
         // Methods
