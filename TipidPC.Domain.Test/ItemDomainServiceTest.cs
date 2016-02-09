@@ -18,7 +18,7 @@ namespace TipidPc.Domain.Test
         // Fields
         private Mock<IRepository<Item>> _mockItemRepository;
         private Mock<IUnitOfWork> _mockUow;
-        private ItemDomainService _sut;
+        private IDomainService<Item> _sut;
         private Item _item;
         private List<Item> _itemList;
         private Header _header;
@@ -53,7 +53,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_item);
 
             // Sut
-            _sut = new ItemDomainService(_mockItemRepository.Object);
+            _sut = new ItemDomainService(_mockUow.Object);
         }
         private void CreateItem()
         {
@@ -142,7 +142,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemList);
 
             // Act
-            var result = _sut.QueryItems();
+            var result = _sut.Query();
 
             // Assert
             Assert.IsTrue(result.Count() == 2);
@@ -161,7 +161,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemList.Where(a => a.Id == id));
 
             // Act
-            var result = _sut.QueryItemById(id);
+            var result = _sut.QueryById(id);
 
             // Assert
             Assert.IsTrue(result != null);
@@ -181,7 +181,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemList.Where(i => i.UserId == userId));
 
             // Act
-            var result = _sut.QueryItemsByUserId(userId);
+            var result = _sut.QueryByUserId(userId);
 
             // Assert
             Assert.IsTrue(result.Count() == 1);
@@ -201,7 +201,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemList);
 
             // Act
-            var result = _sut.QueryItems();
+            var result = _sut.Query();
 
             // Assert
             Assert.IsTrue(result.Count(a => a.Header == null) == 0);
@@ -220,7 +220,7 @@ namespace TipidPc.Domain.Test
                 .Returns(_itemList);
 
             // Act
-            var result = _sut.QueryItems();
+            var result = _sut.Query();
 
             // Assert
             Assert.IsTrue(result.Count(a => a.Entry == null) == 0);
@@ -237,7 +237,7 @@ namespace TipidPc.Domain.Test
             CreateItem();
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
@@ -255,7 +255,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -276,7 +276,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -297,7 +297,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -318,7 +318,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -339,7 +339,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -360,7 +360,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -381,7 +381,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.First();
             var result = _mockUow.Object.Commit();
 
@@ -402,7 +402,7 @@ namespace TipidPc.Domain.Test
                 .Returns(0);
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -419,7 +419,7 @@ namespace TipidPc.Domain.Test
             CreateItem();
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
@@ -435,7 +435,7 @@ namespace TipidPc.Domain.Test
             _item.Duration = ItemDuration.ThirtyDays;
 
             // Act
-            _sut.AddItem(_item);
+            _sut.Add(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
@@ -455,7 +455,7 @@ namespace TipidPc.Domain.Test
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_item);
+            _sut.Update(_item);
             var result = _mockUow.Object.Commit();
 
             // Assert
@@ -479,7 +479,7 @@ namespace TipidPc.Domain.Test
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_item);
+            _sut.Update(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 
@@ -505,7 +505,7 @@ namespace TipidPc.Domain.Test
                 .Verifiable();
 
             // Act
-            _sut.UpdateItem(_item);
+            _sut.Update(_item);
             var validationResult = _sut.ValidationErrors.FirstOrDefault();
             var result = _mockUow.Object.Commit();
 

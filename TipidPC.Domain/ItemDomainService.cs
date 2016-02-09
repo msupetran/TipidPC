@@ -6,10 +6,11 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using Common.Infrastructure.Data;
 
 namespace TipidPc.Domain
 {
-    public class ItemDomainService
+    public class ItemDomainService : IDomainService<Item>
     {
         // Fields;
         private IRepository<Item> _itemRepository;
@@ -26,13 +27,13 @@ namespace TipidPc.Domain
         }
 
         // Constructors
-        public ItemDomainService(IRepository<Item> itemRepository)
+        public ItemDomainService(IUnitOfWork uow)
         {
-            _itemRepository = itemRepository;
+            _itemRepository = uow.GetRepository<Item>();
         }
 
         // Methods
-        public Item QueryItemById(int id)
+        public Item QueryById(int id)
         {
             var itemIdSpec = new ExpressionSpecification<Item>(i => i.Id == id);
             var items = _itemRepository
@@ -40,19 +41,19 @@ namespace TipidPc.Domain
                 .SingleOrDefault();
             return items;
         }
-        public IEnumerable<Item> QueryItems()
+        public IEnumerable<Item> Query()
         {
             var allSpec = new ExpressionSpecification<Item>();
             var items = _itemRepository.Select(allSpec, _includedProperties);
             return items;
         }
-        public IEnumerable<Item> QueryItemsByUserId(int userId)
+        public IEnumerable<Item> QueryByUserId(int userId)
         {
             var itemUserIdSpec = new ExpressionSpecification<Item>(i => i.UserId == userId);
             var items = _itemRepository.Select(itemUserIdSpec, _includedProperties);
             return items;
         }
-        public void AddItem(Item item)
+        public void Add(Item item)
         {
             var currentDate = DateTime.Now;
             item.Id = 0; 
@@ -62,12 +63,14 @@ namespace TipidPc.Domain
 
             if (item.Header != null)
             {
+                item.Header.UserId = item.UserId;
                 item.Header.Created = currentDate;
-                item.Header.Created = currentDate;
+                item.Header.Updated = currentDate;
             }
 
             if (item.Entry != null)
             {
+                item.Entry.UserId = item.UserId;
                 item.Entry.Created = currentDate;
                 item.Entry.Updated = currentDate;
             }
@@ -78,7 +81,7 @@ namespace TipidPc.Domain
                 _itemRepository.Insert(item);
             }
         }
-        public void UpdateItem(Item newItem)
+        public void Update(Item newItem)
         {
             var currentDate = DateTime.Now;
             newItem.Updated = currentDate;

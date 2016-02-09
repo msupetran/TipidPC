@@ -6,12 +6,14 @@ using TipidPc.Domain.Models;
 
 namespace TipidPc.Presentation.WebApi.Models
 {
-    public class ItemsViewModel
+    public class ItemsViewModel : IViewModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int CategoryId { get; set; }
+        public string Category { get; set; }
         public ItemSection Section { get; set; }
         public string Name { get; set; }
-        public Category Category{ get; set; }
         public decimal Amount { get; set; }
         public ItemCondition Condition { get; set; }
         public ItemWarranty Warranty { get; set; }
